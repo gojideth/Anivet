@@ -1,5 +1,8 @@
 package models;
 
+import models.Provider;
+import models.Quantity;
+
 public abstract class Product {
     public static final double IVA_PERCENTAGE = 0.19;
 
@@ -10,6 +13,16 @@ public abstract class Product {
     private Provider provider;
     private Quantity quantityPresentation;
     private String sanitaryLicense;
+
+    public Product(double price, String nameProduct, int quantityAvailable, double providerPrice, Provider provider, Quantity quantityPresentation, String sanitaryLicense) {
+        this.price = price;
+        this.nameProduct = nameProduct;
+        this.quantityAvailable = quantityAvailable;
+        this.providerPrice = providerPrice;
+        this.provider = provider;
+        this.quantityPresentation = quantityPresentation;
+        this.sanitaryLicense = sanitaryLicense;
+    }
 
     public int getQuantityAvailable() {
         return quantityAvailable;
