@@ -1,8 +1,7 @@
 package models.products;
 
-import models.Product;
-import models.Provider;
-import models.Quantity;
+import models.shop.Product;
+import models.shop.Quantity;
 
 public class FeedingConcentrate extends Product {
     private int qualityIndex;
@@ -10,6 +9,11 @@ public class FeedingConcentrate extends Product {
 
     public FeedingConcentrate(double price, String nameProduct, int quantityAvailable, double providerPrice, Provider provider, Quantity quantityPresentation, String sanitaryLicense) {
         super(price, nameProduct, quantityAvailable, providerPrice, provider, quantityPresentation, sanitaryLicense);
+    }
+
+    @Override
+    public String getIdentifier() {
+        return null;
     }
 
 

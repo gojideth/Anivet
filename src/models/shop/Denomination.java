@@ -1,4 +1,4 @@
-package models;
+package models.shop;
 
 public enum Denomination {
     GRAMS("Gramos"), UNITS("Unidades");

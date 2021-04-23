@@ -1,4 +1,4 @@
-package models;
+package models.shop;
 
 public enum ChargeType {
     WORKER("Trabajador"),USER("Usuario")    ;

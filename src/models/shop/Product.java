@@ -1,7 +1,6 @@
-package models;
+package models.shop;
 
-import models.Provider;
-import models.Quantity;
+import models.products.Provider;
 
 public abstract class Product {
     public static final double IVA_PERCENTAGE = 0.19;
@@ -83,4 +82,6 @@ public abstract class Product {
     public String formatForBuy(){
         return nameProduct + " precio: " + price + " cantidad disponible :" + getQuantityPresentation().getAmount() + getQuantityPresentation().getProductDenomination();
     }
+
+    public abstract String getIdentifier();
 }

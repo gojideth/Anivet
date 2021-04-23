@@ -1,4 +1,4 @@
-package models;
+package models.shop;
 
 /**
  * Clase que maneja la cantidad de cada producto en el inventario
