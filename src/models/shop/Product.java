@@ -84,4 +84,17 @@ public abstract class Product {
     }
 
     public abstract String getIdentifier();
+
+    public Object[ ] getObjectVector(){
+        return new Object[]{
+                this.nameProduct,
+                this.price,
+                this.quantityAvailable,
+                this.getQuantityPresentation(),
+                this.provider,
+                this.providerPrice,
+                this.sanitaryLicense,
+
+        };
+    }
 }

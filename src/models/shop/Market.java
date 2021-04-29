@@ -16,6 +16,16 @@ public class Market {
         this.filters = filters;
     }
 
+
+    public void deleteProduct(String product){
+        productArrayList.removeIf(products -> products.getNameProduct().equals(product));
+    }
+
+    public void addProduct(Product product){
+        this.productArrayList.add(product);
+    }
+
+
     private void filterListAlphabet(){
         filters.clear();
         filters.addAll(productArrayList);
