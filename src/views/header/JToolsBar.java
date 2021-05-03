@@ -1,4 +1,8 @@
 package views.header;
 
-public class JToolsBar {
+import javax.swing.*;
+
+public class JToolsBar extends JToolBar {
+
+
 }

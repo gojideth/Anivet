@@ -31,5 +31,8 @@ public class Administrator {
         this.market.deleteProduct(product.getNameProduct());
     }
 
+    public void checkIventory(Product product){
+
+    }
 
 }
