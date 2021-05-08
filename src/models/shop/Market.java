@@ -16,6 +16,17 @@ public class Market {
         this.filters = filters;
     }
 
+    public List<Product> getProductArrayList() {
+        return productArrayList;
+    }
+
+    public void setProductArrayList(List<Product> productArrayList) {
+        this.productArrayList = productArrayList;
+    }
+
+    public void setFilters(List<Product> filters) {
+        this.filters = filters;
+    }
 
     public void deleteProduct(String product){
         productArrayList.removeIf(products -> products.getNameProduct().equals(product));

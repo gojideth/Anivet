@@ -12,8 +12,10 @@ public abstract class Product {
     private Provider provider;
     private Quantity quantityPresentation;
     private String sanitaryLicense;
+    private TypeProduct typeProduct;
 
-    public Product(double price, String nameProduct, int quantityAvailable, double providerPrice, Provider provider, Quantity quantityPresentation, String sanitaryLicense) {
+    public Product(TypeProduct typeProduct, double price, String nameProduct, int quantityAvailable, double providerPrice, Provider provider, Quantity quantityPresentation, String sanitaryLicense) {
+        this.typeProduct = typeProduct;
         this.price = price;
         this.nameProduct = nameProduct;
         this.quantityAvailable = quantityAvailable;

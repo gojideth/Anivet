@@ -3,33 +3,43 @@ package models.shop;
 import java.time.LocalDate;
 
 public abstract class Person {
-    private String name;
-    private String document;
+    private java.lang.String name;
+    private java.lang.String document;
     private int age;
+    private String gender;
     private LocalDate birthDate;
-    private ChargeType occupation;
+    private String occupation;
 
-    public Person(String name, String document, int age, LocalDate birthDate, ChargeType occupation) {
+    public Person(java.lang.String name, java.lang.String document, int age, String gender, LocalDate birthDate, String occupation) {
         this.name = name;
         this.document = document;
         this.age = age;
+        this.gender = gender;
         this.birthDate = birthDate;
         this.occupation = occupation;
     }
 
-    public String getName() {
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public java.lang.String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(java.lang.String name) {
         this.name = name;
     }
 
-    public String getDocument() {
+    public java.lang.String getDocument() {
         return document;
     }
 
-    public void setDocument(String document) {
+    public void setDocument(java.lang.String document) {
         this.document = document;
     }
 
@@ -49,11 +59,11 @@ public abstract class Person {
         this.birthDate = birthDate;
     }
 
-    public ChargeType getOccupation() {
+    public String getOccupation() {
         return occupation;
     }
 
-    public void setOccupation(ChargeType occupation) {
+    public void setOccupation(String occupation) {
         this.occupation = occupation;
     }
 
