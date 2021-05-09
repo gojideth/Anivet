@@ -39,7 +39,9 @@ public class JProductTable extends JPanel {
 
         defaultTableModel.setColumnIdentifiers(rowNames);
 
+
         jTable = new JTable();
+
         jTable.setModel(defaultTableModel); //Le agrego a mi cascarón la tabla que contendrá la información
         jTable.setAutoCreateRowSorter(true);
         //Modifico el header de mi tabla

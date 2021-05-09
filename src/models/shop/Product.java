@@ -12,9 +12,9 @@ public  class Product {
     private String provider;
     private Quantity quantityPresentation;
     private String sanitaryLicense;
-    private TypeProduct typeProduct;
+    private String typeProduct;
 
-    public Product(TypeProduct typeProduct, double price, String nameProduct, int quantityAvailable, double providerPrice, String provider, Quantity quantityPresentation, String sanitaryLicense) {
+    public Product(String typeProduct, double price, String nameProduct, int quantityAvailable, double providerPrice, String provider, Quantity quantityPresentation, String sanitaryLicense) {
         this.typeProduct = typeProduct;
         this.price = price;
         this.nameProduct = nameProduct;
@@ -25,7 +25,7 @@ public  class Product {
         this.sanitaryLicense = sanitaryLicense;
     }
 
-    public Product(String nameProduct, double price, int quantityAvailable, double providerPrice, String provider, Quantity quantityPresentation, String sanitaryLicense, TypeProduct typeProduct) {
+    public Product(String nameProduct, double price, int quantityAvailable, double providerPrice, String provider, Quantity quantityPresentation, String sanitaryLicense, String typeProduct) {
         this.nameProduct = nameProduct;
         this.price = price;
         this.quantityAvailable = quantityAvailable;
@@ -33,6 +33,17 @@ public  class Product {
         this.provider = provider;
         this.quantityPresentation = quantityPresentation;
         this.sanitaryLicense = sanitaryLicense;
+        this.typeProduct = typeProduct;
+    }
+
+    public void addQuantAvailable(){
+        this.setQuantityAvailable(this.getQuantityAvailable()+1);
+    }
+    public String getTypeProduct() {
+        return typeProduct;
+    }
+
+    public void setTypeProduct(String typeProduct) {
         this.typeProduct = typeProduct;
     }
 
@@ -109,5 +120,19 @@ public  class Product {
                 this.sanitaryLicense,
 
         };
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "nameProduct='" + nameProduct + '\'' +
+                ", price=" + price +
+                ", quantityAvailable=" + quantityAvailable +
+                ", providerPrice=" + providerPrice +
+                ", provider='" + provider + '\'' +
+                ", quantityPresentation=" + quantityPresentation +
+                ", sanitaryLicense='" + sanitaryLicense + '\'' +
+                ", typeProduct='" + typeProduct + '\'' +
+                '}';
     }
 }

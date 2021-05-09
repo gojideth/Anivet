@@ -1,7 +1,5 @@
 package views.body;
 
-import models.controller.MyPresenter;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -23,5 +21,13 @@ public class JPMainBody extends JPanel {
         this.repaint();
         this.add(jProductTable,BorderLayout.PAGE_START);
         revalidate();
+    }
+
+    public void createRow(Object [] data){
+        this.jProductTable.createRow(data);
+    }
+
+    public void deleteRows(){
+        jProductTable.eraseTable();
     }
 }

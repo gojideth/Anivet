@@ -1,8 +1,10 @@
 package views;
 
-import models.controller.MyPresenter;
+import controllers.MyPresenter;
 import models.shop.Client;
+import models.shop.Product;
 import utilities.HandlerLanguage;
+import views.dialogs.DialogProduct;
 import views.dialogs.DialogUser;
 
 import javax.swing.*;
@@ -12,6 +14,7 @@ public class JFrameMain extends JFrame {
     private JPMain mainPanel;
     private JScrollPane jScrollPane;
     private DialogUser dialogUser;
+    private DialogProduct dialogProduct;
 
     public JFrameMain(MyPresenter myPresenter)  {
         initComponents(myPresenter);
@@ -28,6 +31,7 @@ public class JFrameMain extends JFrame {
         this.mainPanel = new JPMain(myPresenter);
         this.jScrollPane = new JScrollPane(mainPanel);
         this.dialogUser = new DialogUser(myPresenter);
+        this.dialogProduct = new DialogProduct(myPresenter);
         this.add(jScrollPane);
     }
 
@@ -49,6 +53,17 @@ public class JFrameMain extends JFrame {
     }
 
 
+    public void showProductDialog(){
+        dialogProduct.setVisible(true);
+    }
+
+    public void closeDialogProduct(){
+        dialogProduct.dispose();
+    }
+
+    public Product createProductFromDialog(){
+        return dialogProduct.createProduct();
+    }
 
     public void createUserWelcome(String name){
         this.mainPanel.welcomeUserText(name);
@@ -60,4 +75,11 @@ public class JFrameMain extends JFrame {
     }
 
 
+    public void createRow(Object [] data){
+        this.mainPanel.createRow(data);
+    }
+
+    public void deleteRows(){
+        this.mainPanel.eraseTable();
+    }
 }

@@ -1,8 +1,8 @@
 package views.dialogs;
 
 import com.toedter.calendar.JDateChooser;
-import models.controller.Commands;
-import models.controller.MyPresenter;
+import controllers.Commands;
+import controllers.MyPresenter;
 import models.shop.ChargeType;
 import models.shop.Client;
 import models.shop.Gender;

@@ -41,11 +41,21 @@ public class Administrator {
 
 
     public void addProduct(Product product){
-        this.market.addProduct(product);
+        if (!(this.market.getProductArrayList().contains(product))){
+            this.market.addProduct(product);
+        }else {
+            for (Product product1 : this.market.getProductArrayList()) {
+                if (product1.getNameProduct().equals(product.getNameProduct())) {
+                    product1.addQuantAvailable();
+                } else {
+                    this.market.getProductArrayList().add(product);
+                }
+            }
+        }
     }
 
-    public void deleteProduct(Product product){
-        this.market.deleteProduct(product.getNameProduct());
+    public void deleteProduct(String productName){
+        this.market.deleteProduct(productName);
     }
 
     public void checkIventory(Product product){

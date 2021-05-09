@@ -1,7 +1,7 @@
 package views.header;
 
-import models.controller.Commands;
-import models.controller.MyPresenter;
+import controllers.Commands;
+import controllers.MyPresenter;
 import utilities.MyUtilities;
 import views.ConstantGUI;
 import views.Constants;

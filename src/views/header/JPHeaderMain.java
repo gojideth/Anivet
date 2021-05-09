@@ -1,6 +1,6 @@
 package views.header;
 
-import models.controller.MyPresenter;
+import controllers.MyPresenter;
 
 import javax.swing.*;
 import java.awt.*;

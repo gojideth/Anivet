@@ -1,4 +1,4 @@
-package models.controller;
+package controllers;
 
 public enum Commands {
 
@@ -7,11 +7,12 @@ public enum Commands {
 
     //Dialogs
     CREATE_CLIENT_DIALOG,
-
+    CREATE_PRODUCT_DIALOG_AND_CLOSE,
     //Mostrar o esconder paneles
     C_SHOW_DIALOG_CLIENT,
     C_SHOW_HOMEPAGE,
     C_SHOW_TABLE,
+    C_SHOW_DIALOG_PRODUCT,
 
     //ChangeIdioms
     I_CHANGE_TO_SPANISH,

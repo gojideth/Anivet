@@ -8,7 +8,7 @@ import models.shop.Product;
 
 public class Bill {
     private LocalDate dateOfExpedition;
-    private List<Product> products;
+    private ArrayList<Product> productsBoughts;
 
     /**
      * Constructor que crea un recibo con una fecha entrante e instancia la lista de productos
@@ -16,15 +16,15 @@ public class Bill {
      */
     public Bill(LocalDate date) {
         this.dateOfExpedition=date;
-        this.products=new ArrayList();
+        this.productsBoughts=new ArrayList();
     }
 
     /**
      * Constructor por default
      * @param products Productos a ingresar
      */
-    public Bill(List<Product> products){
-        this.products = products;
+    public Bill(ArrayList<Product> products){
+        this.productsBoughts = products;
     }
 
     /**
@@ -39,8 +39,8 @@ public class Bill {
      * Metodo que retornara la lista que contiene lo que el cliente comprara
      * @return arraylist con los productos que se compraran
      */
-    public List<Product> getProducts() {
-        return products;
+    public ArrayList<Product> getProducts() {
+        return productsBoughts;
     }
 
     /**
@@ -49,8 +49,8 @@ public class Bill {
      */
     public double calculateTotal(){
         double acum = 0;
-        for (int i=0; i<products.size(); i++){
-            acum += products.get(i).getPrice() * products.get(i).getQuantityPresentation().getAmount();
+        for (int i=0; i<productsBoughts.size(); i++){
+            acum += productsBoughts.get(i).getPrice() * productsBoughts.get(i).getQuantityPresentation().getAmount();
         }
         return acum;
     }

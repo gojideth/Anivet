@@ -1,6 +1,6 @@
 package views;
 
-import models.controller.MyPresenter;
+import controllers.MyPresenter;
 import views.body.JPLogin;
 import views.body.JPMainBody;
 import views.header.JPHeaderMain;
@@ -34,10 +34,17 @@ public class JPMain extends JPanel {
 
     }
 
+    public void createRow(Object [] data){
+        this.jpMainBody.createRow(data);
+    }
+
     public void showTable(){
         jpMainBody.showTableProducts();
     }
 
+    public void eraseTable(){
+        jpMainBody.deleteRows();
+    }
     public void welcomeUserText(String name){
         jpHeaderMain.setTextWelcom(name);
     }

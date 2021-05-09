@@ -1,8 +1,7 @@
 package views.body;
 
-import models.controller.Commands;
-import models.controller.MyPresenter;
-import views.Constants;
+import controllers.Commands;
+import controllers.MyPresenter;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

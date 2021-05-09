@@ -1,14 +1,13 @@
 package views.header;
 
-import models.controller.Commands;
-import models.controller.MyPresenter;
+import controllers.Commands;
+import controllers.MyPresenter;
 import utilities.HandlerLanguage;
 import utilities.MyUtilities;
 import views.ConstantGUI;
 
 
 import javax.swing.*;
-import java.awt.*;
 
 public class JPanelButtons extends JPanel{
         private JButton addProduct, listProducts, deleteProduct, organiceProducts, changeToEnglish, changeToSpanish ;
@@ -24,7 +23,7 @@ public class JPanelButtons extends JPanel{
     public void initComponents(MyPresenter myPresenter){
         addProduct = new JButton();
         ImageIcon tempWorld = new ImageIcon(new ImageIcon(getClass().getResource(ConstantGUI.ICON_ADD_PRODUCT)).getImage());
-        addProduct.setActionCommand(Commands.C_ADD_PRODUCT.toString());
+        addProduct.setActionCommand(Commands.C_SHOW_DIALOG_PRODUCT.toString());
         addProduct.addActionListener(myPresenter);
         MyUtilities.setTextAndIconButtons(addProduct, HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_ADD_PRODUCT),tempWorld,0,0,0,0);
 

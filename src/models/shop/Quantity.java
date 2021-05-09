@@ -6,9 +6,9 @@ package models.shop;
           */
 public class Quantity {
     private int amount;
-    private Denomination productDenomination;
+    private String productDenomination;
 
-    public Quantity(int amount, Denomination productDenomination) {
+    public Quantity(int amount, String productDenomination) {
         this.amount = amount;
         this.productDenomination = productDenomination;
     }
@@ -27,7 +27,7 @@ public class Quantity {
      *
      * @return denominacion del producto
      */
-    public Denomination getProductDenomination() {
+    public String getProductDenomination() {
         return productDenomination;
     }
 
@@ -58,5 +58,14 @@ public class Quantity {
      */
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Quantity{" +
+                "amount=" + amount +
+                ", productDenomination='" + productDenomination + '\'' +
+                '}';
     }
 }

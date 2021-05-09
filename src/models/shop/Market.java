@@ -12,6 +12,8 @@ public class Market {
 
     public Market(String name) {
         this.name = name;
+        this.productArrayList = new ArrayList<>();
+        this.filters = new ArrayList<>();
     }
 
     public String getName() {

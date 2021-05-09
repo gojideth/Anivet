@@ -2,8 +2,10 @@ package models.shop;
 
 public enum Denomination {
     GRAMS("Gramos"), UNITS("Unidades");
-    Denomination(String denominacion){
 
+    private  String denomination;
+    Denomination(String denominacion){
+        this.denomination = denominacion;
     }
 
 }
