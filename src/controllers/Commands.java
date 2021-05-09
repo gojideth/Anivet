@@ -24,6 +24,7 @@ public enum Commands {
     C_ADD_PRODUCT,
     C_DELETE_PRODUCT,
     C_ORGANICE_PRODUCTS,
+    C_BUY_PRODUCTS,
     C_LIST_PRODUCTS,
     SIGN_IN ;
 }

@@ -69,11 +69,17 @@ public class JFrameMain extends JFrame {
         this.mainPanel.welcomeUserText(name);
     }
 
+    public void createUserID(String id){
+        this.mainPanel.welcomeUserId(id);
+    }
 
     public void showTableProducts(){
         mainPanel.showTable();
     }
 
+    public String obtainSelectedData(){
+        return mainPanel.obtainSelectedData();
+    }
 
     public void createRow(Object [] data){
         this.mainPanel.createRow(data);

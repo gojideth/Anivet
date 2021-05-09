@@ -23,6 +23,10 @@ public class JPMainBody extends JPanel {
         revalidate();
     }
 
+    public String obtainSelectedData(){
+        return jProductTable.tryBuy();
+    }
+
     public void createRow(Object [] data){
         this.jProductTable.createRow(data);
     }

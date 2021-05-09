@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MyPresenter implements ActionListener {
@@ -44,6 +45,7 @@ public class MyPresenter implements ActionListener {
             case I_CHANGE_TO_SPANISH:
                 manageChangeLanguageES();
                 mainFrame.showTableProducts();
+                this.printTestProducts();
                 break;
             case C_SHOW_DIALOG_CLIENT:
                 this.showDialogCreate();
@@ -52,12 +54,18 @@ public class MyPresenter implements ActionListener {
                 this.createClientInAdmin(this.bringClientFromDialog());
 
                 this.setText();
+                this.setId();
                 break;
             case C_SHOW_DIALOG_PRODUCT:
                 this.showProductDialog();
                 break;
             case C_LIST_PRODUCTS:
                 this.showTableData();
+                break;
+            case C_BUY_PRODUCTS:
+                System.out.println("FUnciona al menos?");
+                this.buyProducts();
+                this.printAnyArraylist(this.administrator.getMarket().getItemsBoughts());
                 break;
 
             case CREATE_PRODUCT_DIALOG_AND_CLOSE:
@@ -68,8 +76,13 @@ public class MyPresenter implements ActionListener {
 
             case C_SHOW_TABLE:
                 mainFrame.showTableProducts();
-            default:
                 break;
+            case C_DELETE_PRODUCT:
+                this.deleteProduct(JOptionPane.showInputDialog(null));
+                this.showTableData();
+                break;
+            default:
+
         }
     }
 
@@ -113,6 +126,8 @@ public class MyPresenter implements ActionListener {
         this.administrator.addProduct(product);
     }
 
+
+
     public void deleteProduct(String name) {
         this.administrator.deleteProduct(name);
     }
@@ -146,6 +161,12 @@ public class MyPresenter implements ActionListener {
         }
     }
 
+    public void printAnyArraylist(ArrayList<Product> arrayList){
+        for (Product o: arrayList) {
+            System.out.println(Arrays.toString(o.getObjectVector()));
+        }
+    }
+
     public void showTableData(){
         mainFrame.deleteRows();
         for (Product product: this.administrator.getMarket().getProductArrayList()) {
@@ -153,13 +174,38 @@ public class MyPresenter implements ActionListener {
         }
     }
 
+    public String obtainSelectedData(){
+        return mainFrame.obtainSelectedData();
+    }
+
+    public void buyProducts(){
+
+        Product productAux;
+        for (int i = 0;i<this.administrator.getMarket().getProductArrayList().size();i++) {
+            if (this.obtainSelectedData().equalsIgnoreCase(this.administrator.getMarket().getProductArrayList().get(i).getNameProduct())){
+                productAux = this.administrator.getMarket().getProductArrayList().get(i);
+                this.administrator.getMarket().getItemsBoughts().add(productAux);
+            }
+        }
+
+
+    }
+
     public void printTestClient(Client client) {
         System.out.println(this.bringClientFromDialog().toString());
+    }
+
+    public void printTestProducts() {
+        System.out.println(this.administrator.getMarket().getProductArrayList().toString());
     }
 
     public void setText() {
         mainFrame.createUserWelcome(this.bringClientFromDialog().getName());
 
+    }
+
+    public void setId(){
+        mainFrame.createUserID(this.bringClientFromDialog().getDocument());
     }
 
 

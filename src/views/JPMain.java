@@ -34,6 +34,10 @@ public class JPMain extends JPanel {
 
     }
 
+    public String obtainSelectedData(){
+        return jpMainBody.obtainSelectedData();
+    }
+
     public void createRow(Object [] data){
         this.jpMainBody.createRow(data);
     }
@@ -45,7 +49,12 @@ public class JPMain extends JPanel {
     public void eraseTable(){
         jpMainBody.deleteRows();
     }
+
+
     public void welcomeUserText(String name){
         jpHeaderMain.setTextWelcom(name);
+    }
+    public void welcomeUserId(String id){
+        jpHeaderMain.setTextID(id);
     }
 }

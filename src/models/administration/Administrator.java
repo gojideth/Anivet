@@ -10,6 +10,7 @@ public class Administrator {
     private Client client;
 
 
+
     public Administrator(Market market) {
         this.market = market;
 
@@ -53,6 +54,8 @@ public class Administrator {
             }
         }
     }
+
+
 
     public void deleteProduct(String productName){
         this.market.deleteProduct(productName);

@@ -27,6 +27,9 @@ public class JPHeaderMain extends JPanel{
     public void setTextWelcom(String name){
         jpHeader.setNameToLabel(name);
     }
+    public void setTextID(String id){
+        jpHeader.setNameToLabelID(id);
+    }
 
     public void changeLanguage(){
         jToolsBar.changeLanguage();

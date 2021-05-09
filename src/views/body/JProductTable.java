@@ -21,19 +21,20 @@ public class JProductTable extends JPanel {
 
 
     private void initComponents() {
-        String[] rowNames = {Constants.NAME_PRODUCT, Constants.PRICE, Constants.QUANTITY_AVAILABLE, Constants.PROVIDER_PRICE, Constants.PROVIDER, Constants.QUANTITY_PRESENTATION, Constants.LICENSE,Constants.TYPE_PRODUCT};
+        String[] rowNames = {Constants.NAME_PRODUCT, Constants.PRICE, Constants.QUANTITY_AVAILABLE, Constants.PROVIDER_PRICE, Constants.PROVIDER, Constants.QUANTITY_PRESENTATION, Constants.LICENSE, Constants.TYPE_PRODUCT};
         //Creo mi cascarón y a este le debo poner el titulo de las columnas que vaya a usar, en este caso vienen organizadas por el arreglo de objetos de la clase Cuyclist
 
 
-        defaultTableModel = new DefaultTableModel(){
+        defaultTableModel = new DefaultTableModel() {
             @Override
             public Class getColumnClass(int columna) {
-                switch (columna){
+                switch (columna) {
                     case 1:
                         return Integer.class;
                     case 2:
                         return Integer.class;
-                }return String.class;
+                }
+                return String.class;
             }
         };
 
@@ -62,6 +63,9 @@ public class JProductTable extends JPanel {
 
     }
 
+    public String tryBuy() {
+        return String.valueOf(defaultTableModel.getValueAt(jTable.getSelectedRow(), 0));
+    }
 
     /**
      * Creo metodos que traten directamente con mi tabla, recordando que debo traer desde el presenter los mismos metodos
@@ -75,7 +79,7 @@ public class JProductTable extends JPanel {
     /**
      * Creo un metodo que me AGREGUE una hilera de datos
      */
-    public void createRow(Object [] data){
+    public void createRow(Object[] data) {
         this.defaultTableModel.addRow(data);
     }
 }

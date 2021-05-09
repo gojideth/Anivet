@@ -10,7 +10,7 @@ import views.ConstantGUI;
 import javax.swing.*;
 
 public class JPanelButtons extends JPanel{
-        private JButton addProduct, listProducts, deleteProduct, organiceProducts, changeToEnglish, changeToSpanish ;
+        private JButton addProduct, listProducts, deleteProduct, buyProducts, changeToEnglish, changeToSpanish ;
         private JMenu showGraphics;
 
     public JPanelButtons(MyPresenter myPresenter) {
@@ -39,11 +39,11 @@ public class JPanelButtons extends JPanel{
         tempWorld = new ImageIcon(new ImageIcon(getClass().getResource(ConstantGUI.ICON_DELETE_PRODUCT2)).getImage());
         MyUtilities.setTextAndIconButtons(deleteProduct, HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_DELETE_PRODUCT),tempWorld,0,0,0,0);
 
-        organiceProducts = new JButton("");
-        organiceProducts.setActionCommand(Commands.C_ORGANICE_PRODUCTS.toString());
-        organiceProducts.addActionListener(myPresenter);
-        tempWorld = new ImageIcon(new ImageIcon(getClass().getResource(ConstantGUI.ICON_ORGANIZE)).getImage());
-        MyUtilities.setTextAndIconButtons(organiceProducts, HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_ORGANIZE),tempWorld,0,0,0,0);
+        buyProducts = new JButton("");
+        buyProducts.setActionCommand(Commands.C_BUY_PRODUCTS.toString());
+        buyProducts.addActionListener(myPresenter);
+        tempWorld = new ImageIcon(new ImageIcon(getClass().getResource(ConstantGUI.ICON_BUY)).getImage());
+        MyUtilities.setTextAndIconButtons(buyProducts, HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_BUY),tempWorld,0,0,0,0);
 
         changeToSpanish = new JButton("");
         changeToSpanish.setActionCommand(Commands.I_CHANGE_TO_SPANISH.toString());
@@ -61,7 +61,7 @@ public class JPanelButtons extends JPanel{
         this.add(addProduct);
         this.add(listProducts);
         this.add(deleteProduct);
-        this.add(organiceProducts);
+        this.add(buyProducts);
         this.add(changeToSpanish);
         this.add(changeToEnglish);
 
@@ -72,7 +72,7 @@ public class JPanelButtons extends JPanel{
         addProduct.setText(HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_ADD_PRODUCT));
         deleteProduct.setText(HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_DELETE_PRODUCT));
         listProducts.setText(HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_LIST_PRODUCTS));
-        organiceProducts.setText(HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_ORGANIZE));
+        buyProducts.setText(HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_BUY));
 
     }
 

@@ -13,7 +13,7 @@ import java.awt.*;
 
 public class PaneLogo extends JPanel {
     JButton logoButton;
-    JLabel welcomeUser;
+    JLabel welcomeUser, userID;
     JButton logOut;
     JButton signIn;
 
@@ -60,6 +60,8 @@ public class PaneLogo extends JPanel {
         //welcomePanel.setPreferredSize(new Dimension(150,20));
         this.welcomeUser = new JLabel("Por favor agrega a un cliente primero");
 
+        this.userID = new JLabel(" ");
+
         this.logOut = new JButton(Constants.LOGOUT);
         this.logOut.setActionCommand(Commands.LOGOUT.toString());
         this.logOut.addActionListener(myPresenter);
@@ -69,6 +71,7 @@ public class PaneLogo extends JPanel {
         this.signIn.addActionListener(myPresenter);
 
         welcomePanel.add(welcomeUser);
+        welcomePanel.add(userID);
         welcomePanel.add(signIn);
         welcomePanel.add(logOut);
         welcomePanel.add(Box.createRigidArea(new Dimension(100,0)));
@@ -79,6 +82,9 @@ public class PaneLogo extends JPanel {
 
     public void setNameToLabel(String name){
         this.welcomeUser.setText("Bienvenido: " + name);
+    }
+    public void setNameToLabelID(String id){
+        this.userID.setText("Número de documento: " + id);
     }
 
 

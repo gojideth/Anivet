@@ -7,13 +7,23 @@ import java.util.List;
 
 public class Market {
     private String name;
-    private List<Product> productArrayList;
-    private List<Product> filters;
+    private ArrayList<Product> productArrayList;
+    private ArrayList<Product> filters;
+    private ArrayList<Product> itemsBoughts;
 
     public Market(String name) {
         this.name = name;
         this.productArrayList = new ArrayList<>();
         this.filters = new ArrayList<>();
+        this.itemsBoughts = new ArrayList<>();
+    }
+
+    public ArrayList<Product> getItemsBoughts() {
+        return itemsBoughts;
+    }
+
+    public void setItemsBoughts(ArrayList<Product> itemsBoughts) {
+        this.itemsBoughts = itemsBoughts;
     }
 
     public String getName() {
@@ -28,11 +38,11 @@ public class Market {
         return productArrayList;
     }
 
-    public void setProductArrayList(List<Product> productArrayList) {
+    public void setProductArrayList(ArrayList<Product> productArrayList) {
         this.productArrayList = productArrayList;
     }
 
-    public void setFilters(List<Product> filters) {
+    public void setFilters(ArrayList<Product> filters) {
         this.filters = filters;
     }
 
