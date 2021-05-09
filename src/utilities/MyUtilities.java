@@ -38,7 +38,7 @@ public class MyUtilities {
     public static void setTextAndIconButtons(JButton button, String text, ImageIcon imageIcon, int top, int left, int bottom, int right){
         button.setFont(new Font("Arial", Font.BOLD, 18));
         button.setText(text);
-        button.setForeground(Color.decode(ConstantGUI.COLOR_SKY_BLUE));
+        button.setForeground(Color.BLUE);
         button.setMaximumSize(new Dimension(380,60));
         button.setBackground(null);
         button.setIcon(imageIcon);

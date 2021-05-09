@@ -2,19 +2,19 @@ package models.shop;
 
 import models.products.Provider;
 
-public abstract class Product {
+public  class Product {
     public static final double IVA_PERCENTAGE = 0.19;
 
-    protected double price;
     protected String nameProduct;
+    protected double price;
     protected int quantityAvailable;
     private double providerPrice;
-    private Provider provider;
+    private String provider;
     private Quantity quantityPresentation;
     private String sanitaryLicense;
     private TypeProduct typeProduct;
 
-    public Product(TypeProduct typeProduct, double price, String nameProduct, int quantityAvailable, double providerPrice, Provider provider, Quantity quantityPresentation, String sanitaryLicense) {
+    public Product(TypeProduct typeProduct, double price, String nameProduct, int quantityAvailable, double providerPrice, String provider, Quantity quantityPresentation, String sanitaryLicense) {
         this.typeProduct = typeProduct;
         this.price = price;
         this.nameProduct = nameProduct;
@@ -25,6 +25,17 @@ public abstract class Product {
         this.sanitaryLicense = sanitaryLicense;
     }
 
+    public Product(String nameProduct, double price, int quantityAvailable, double providerPrice, String provider, Quantity quantityPresentation, String sanitaryLicense, TypeProduct typeProduct) {
+        this.nameProduct = nameProduct;
+        this.price = price;
+        this.quantityAvailable = quantityAvailable;
+        this.providerPrice = providerPrice;
+        this.provider = provider;
+        this.quantityPresentation = quantityPresentation;
+        this.sanitaryLicense = sanitaryLicense;
+        this.typeProduct = typeProduct;
+    }
+
     public int getQuantityAvailable() {
         return quantityAvailable;
     }
@@ -33,11 +44,11 @@ public abstract class Product {
         this.quantityAvailable = quantityAvailable;
     }
 
-    public Provider getProvider() {
+    public String getProvider() {
         return provider;
     }
 
-    public void setProvider(Provider provider) {
+    public void setProvider(String provider) {
         this.provider = provider;
     }
 
@@ -85,7 +96,7 @@ public abstract class Product {
         return nameProduct + " precio: " + price + " cantidad disponible :" + getQuantityPresentation().getAmount() + getQuantityPresentation().getProductDenomination();
     }
 
-    public abstract String getIdentifier();
+
 
     public Object[ ] getObjectVector(){
         return new Object[]{

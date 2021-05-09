@@ -10,9 +10,9 @@ public class Administrator {
     private Client client;
 
 
-    public Administrator(Market market, Client client) {
+    public Administrator(Market market) {
         this.market = market;
-        this.client = client;
+
     }
 
     public Client getClient() {
@@ -27,6 +27,8 @@ public class Administrator {
         this.client = new Client(client.getName(),client.getDocument(),client.getAge(),client.getGender(),client.getBirthDate(),client.getOccupation());
 
     }
+
+
     public Market getMarket() {
         return market;
     }

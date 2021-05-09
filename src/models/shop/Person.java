@@ -5,12 +5,12 @@ import java.time.LocalDate;
 public abstract class Person {
     private java.lang.String name;
     private java.lang.String document;
-    private int age;
+    private String age;
     private String gender;
     private LocalDate birthDate;
     private String occupation;
 
-    public Person(java.lang.String name, java.lang.String document, int age, String gender, LocalDate birthDate, String occupation) {
+    public Person(java.lang.String name, java.lang.String document, String age, String gender, LocalDate birthDate, String occupation) {
         this.name = name;
         this.document = document;
         this.age = age;
@@ -43,11 +43,11 @@ public abstract class Person {
         this.document = document;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
@@ -67,6 +67,16 @@ public abstract class Person {
         this.occupation = occupation;
     }
 
-
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", document='" + document + '\'' +
+                ", age='" + age + '\'' +
+                ", gender='" + gender + '\'' +
+                ", birthDate=" + birthDate +
+                ", occupation='" + occupation + '\'' +
+                '}';
+    }
 }
 

@@ -61,13 +61,13 @@ public class DialogUser extends JDialog {
 
 
         chargeTypeJComboBox = new JComboBox<>(ChargeType.values());
-        chargeTypeJComboBox.setBorder(BorderFactory.createTitledBorder("Equipo"));
+        chargeTypeJComboBox.setBorder(BorderFactory.createTitledBorder("Ocupación"));
         panelContainer.add(chargeTypeJComboBox);
 
 
 
 
-        jToggleButton = new JToggleButton("AGREGAR");
+        jToggleButton = new JToggleButton("Agrega a tu nuevo cliente");
         jToggleButton.setActionCommand(Commands.CREATE_CLIENT_DIALOG.toString());
         jToggleButton.setBorder(new EmptyBorder(10,10,10,10));
 
@@ -77,8 +77,8 @@ public class DialogUser extends JDialog {
         this.add(panelContainer);
     }
 
-    public Client createCyclist(){
-        return new Client(this.name.getText(),this.document.getText(),Integer.parseInt(this.age.getText()),String.valueOf( genderJComboBox.getSelectedItem()),jDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+    public Client createClient(){
+        return new Client(this.name.getText(),this.document.getText(),(String.valueOf(this.age.getText())),String.valueOf( genderJComboBox.getSelectedItem()),jDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
                 String.valueOf(chargeTypeJComboBox.getSelectedItem()));
     }
 

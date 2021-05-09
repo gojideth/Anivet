@@ -6,14 +6,20 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Market {
-
+    private String name;
     private List<Product> productArrayList;
     private List<Product> filters;
 
-    public Market(List<Product> productArrayList, List<Product> filters) {
+    public Market(String name) {
+        this.name = name;
+    }
 
-        this.productArrayList = productArrayList;
-        this.filters = filters;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Product> getProductArrayList() {
@@ -64,7 +70,7 @@ public class Market {
     public void filterType(String type){
         filters.clear();
         for (int i = 0; i < productArrayList.size(); i++) {
-            if (productArrayList.get(i).getIdentifier().equalsIgnoreCase(type.toUpperCase())){
+            if (productArrayList.get(i).getNameProduct().equalsIgnoreCase(type.toUpperCase())){
                 filters.add(productArrayList.get(i));
             }
         }
@@ -92,7 +98,7 @@ public class Market {
         filters.clear();
         for (int i = 0; i < productArrayList.size(); i++) {
             Product productTemporal = productArrayList.get(i);
-            if (productTemporal.getPrice() <= maxPrice && productTemporal.getIdentifier().equalsIgnoreCase(typeProduct)){
+            if (productTemporal.getPrice() <= maxPrice && productTemporal.getNameProduct().equalsIgnoreCase(typeProduct)){
                 filters.add(productTemporal);
             }
         }
@@ -120,7 +126,7 @@ public class Market {
         filters.clear();
         for (int i = 0; i < productArrayList.size(); i++) {
             Product productTemporal = productArrayList.get(i);
-            if (productTemporal.getPrice() >= minPrice && productTemporal.getIdentifier().contains(typeProduct.toUpperCase())){
+            if (productTemporal.getPrice() >= minPrice && productTemporal.getNameProduct().contains(typeProduct.toUpperCase())){
                 filters.add(productTemporal);
             }
         }
