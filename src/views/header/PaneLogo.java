@@ -2,6 +2,7 @@ package views.header;
 
 import controllers.Commands;
 import controllers.MyPresenter;
+import utilities.HandlerLanguage;
 import utilities.MyUtilities;
 import views.ConstantGUI;
 import views.Constants;
@@ -12,10 +13,12 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class PaneLogo extends JPanel {
-    JButton logoButton;
-    JLabel welcomeUser, userID;
-    JButton logOut;
-    JButton signIn;
+    private JButton logoButton;
+    private  JLabel welcomeUser, userID;
+    private JButton logOut;
+    private  JButton signIn;
+    private JButton changeToSpanish, changeToEnglish;
+    private ImageIcon tempWorld;
 
     public PaneLogo(MyPresenter myPresenter) {
         this.setLayout(new BorderLayout());
@@ -25,6 +28,7 @@ public class PaneLogo extends JPanel {
         this.setPreferredSize(new Dimension(this.returnWidth(this.obtainScreenSize()), 160));
         initComponents(myPresenter);
         createWelcomeUser(myPresenter);
+        //this.addIdiomsButtons(myPresenter);
     }
 
     public Dimension obtainScreenSize() {
@@ -52,6 +56,7 @@ public class PaneLogo extends JPanel {
 
     public void createWelcomeUser( MyPresenter myPresenter) {
         JPanel welcomePanel = new JPanel();
+        welcomePanel.setLayout(new BoxLayout(welcomePanel,BoxLayout.Y_AXIS));
         Border border = new EmptyBorder(10,10,10,6000);
        // welcomePanel.setBorder(border);
         welcomePanel.setVisible(true);
@@ -75,10 +80,32 @@ public class PaneLogo extends JPanel {
         welcomePanel.add(signIn);
         welcomePanel.add(logOut);
         welcomePanel.add(Box.createRigidArea(new Dimension(100,0)));
+        changeToSpanish = new JButton("");
+        changeToSpanish.setActionCommand(Commands.I_CHANGE_TO_SPANISH.toString());
+        changeToSpanish.addActionListener(myPresenter);
+        tempWorld = new ImageIcon(new ImageIcon(getClass().getResource(ConstantGUI.ICON_SPANISH)).getImage());
+        MyUtilities.setTextAndIconButtons(changeToSpanish, HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_SPANISH),tempWorld,0,0,0,0);
+
+        changeToEnglish = new JButton("");
+        changeToEnglish.setActionCommand(Commands.I_CHANGE_TO_ENGLISH.toString());
+        changeToEnglish.addActionListener(myPresenter);
+        tempWorld = new ImageIcon(new ImageIcon(getClass().getResource(ConstantGUI.ICON_ENGLISH)).getImage());
+        MyUtilities.setTextAndIconButtons(changeToEnglish, HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_ENGLISH),tempWorld,0,0,0,0);
+
+        welcomePanel.add(changeToSpanish);
+        welcomePanel.add(changeToEnglish);
         this.add(welcomePanel,BorderLayout.EAST);
 
 
     }
+
+    public void changeLanguage(){
+        changeToEnglish.setText(HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_ENGLISH));
+        changeToSpanish.setText(HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_SPANISH));
+
+
+    }
+
 
     public void setNameToLabel(String name){
         this.welcomeUser.setText("Bienvenido: " + name);

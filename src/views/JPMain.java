@@ -34,6 +34,11 @@ public class JPMain extends JPanel {
 
     }
 
+    public void changeButtonsIdiom(){
+        jpHeaderMain.changeButtonsIdiom();
+    }
+
+
     public String obtainSelectedData(){
         return jpMainBody.obtainSelectedData();
     }

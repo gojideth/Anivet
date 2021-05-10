@@ -8,6 +8,7 @@ public class JPMainBody extends JPanel {
 
     public JPMainBody() {
         this.setLayout(new BorderLayout());
+        this.setBackground(Color.white);
         initComponents();
     }
 

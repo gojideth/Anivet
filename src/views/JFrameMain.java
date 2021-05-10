@@ -1,9 +1,12 @@
 package views;
 
 import controllers.MyPresenter;
+import models.shop.AdministratorPerson;
 import models.shop.Client;
 import models.shop.Product;
 import utilities.HandlerLanguage;
+import views.dialogs.DialogAdmin;
+import views.dialogs.DialogCartShopping;
 import views.dialogs.DialogProduct;
 import views.dialogs.DialogUser;
 
@@ -15,6 +18,8 @@ public class JFrameMain extends JFrame {
     private JScrollPane jScrollPane;
     private DialogUser dialogUser;
     private DialogProduct dialogProduct;
+    private DialogAdmin dialogAdmin;
+    private DialogCartShopping dialogCartShopping;
 
     public JFrameMain(MyPresenter myPresenter)  {
         initComponents(myPresenter);
@@ -32,14 +37,52 @@ public class JFrameMain extends JFrame {
         this.jScrollPane = new JScrollPane(mainPanel);
         this.dialogUser = new DialogUser(myPresenter);
         this.dialogProduct = new DialogProduct(myPresenter);
+        this.dialogAdmin = new DialogAdmin(myPresenter);
+        this.dialogCartShopping = new DialogCartShopping( myPresenter);
         this.add(jScrollPane);
     }
-
 
     public void changeLanguage() {
         this.setTitle( HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_MAIN_WINDOW ));
         mainPanel.changeLanguage();
+        mainPanel.changeButtonsIdiom();
     }
+
+
+    //Bill
+    public void createBillTableData(Object [] data){
+        this.dialogCartShopping.createRow(data);
+    }
+
+    public void eraseBillTableData(){
+        this.dialogCartShopping.eraseTable();
+    }
+
+    //CartDialog
+    public void showDialogCart(){
+        this.dialogCartShopping.setVisible(true);
+    }
+
+    public void closeDialogCart(){
+        this.dialogCartShopping.dispose();
+    }
+
+
+
+    public void showAdminDialog(){
+        this.dialogAdmin.setVisible(true);
+    }
+
+    public void closeAdminDialog(){
+        this.dialogAdmin.dispose();
+    }
+
+    public AdministratorPerson createAdminFromDialog(){
+        return dialogAdmin.createAdmin();
+    }
+
+
+
     public void showDialogCreate(){
         dialogUser.setVisible(true);
     }
@@ -63,6 +106,10 @@ public class JFrameMain extends JFrame {
 
     public Product createProductFromDialog(){
         return dialogProduct.createProduct();
+    }
+
+    public void blankDialogProduct(){
+        dialogProduct.validate();
     }
 
     public void createUserWelcome(String name){

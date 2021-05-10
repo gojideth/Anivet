@@ -11,9 +11,13 @@ public class ConstantGUI {
     public static final String ICON_DELETE_PRODUCT2 = "/images/delete.png";
     public static final String ICON_LIST = "/images/list.png";
     public static final String ICON_ORGANIZE = "/images/organice.png";
-    public static final String ICON_BUY = "/images/checkout.png";
+    public static final String GIF = "/images/bye.gif";
+    public static final String GIF_CHECK = "/images/check.gif";
+
     public static final String ICON_ENGLISH  = "/images/english.png";
     public static final String ICON_SPANISH  = "/images/spanish.png";
+    public static final String ICON_PROCEED_BUY = "/images/proceed.png";
+    public static final String ICON_ADD_CART = "/images/addcart.png";
     //public static final String ICON_DELETE_PRODUCT2 = "/images/delete.png";
 
 
@@ -26,6 +30,8 @@ public class ConstantGUI {
     public static final String T_DELETE_PRODUCT= "Delete_product";
     public static final String T_ORGANIZE= "Organize_product";
     public static final String T_BUY= "Buy_Product";
+    public static final String T_SHOW_CART= "Show_cart";
+    public static final String T_ADD_PRODUCT_TO_CART= "Add_to_shopping_cart";
 
 
 

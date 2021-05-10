@@ -7,13 +7,29 @@ import java.time.LocalDate;
 public class Administrator {
 
     private Market market;
+    private AdministratorPerson administratorPerson;
     private Client client;
+
+
 
 
 
     public Administrator(Market market) {
         this.market = market;
 
+    }
+
+    public AdministratorPerson getAdministratorPerson() {
+        return administratorPerson;
+    }
+
+    public void setAdministratorPerson(AdministratorPerson administratorPerson) {
+        this.administratorPerson = administratorPerson;
+    }
+
+    public void createAdmin(AdministratorPerson administratorPerson){
+        this.administratorPerson = new AdministratorPerson(administratorPerson.getName(),administratorPerson.getDocument(),administratorPerson.getAge(),
+                administratorPerson.getGender(),administratorPerson.getBirthDate(),administratorPerson.getOccupation());
     }
 
     public Client getClient() {

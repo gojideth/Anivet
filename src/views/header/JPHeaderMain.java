@@ -10,7 +10,7 @@ public class JPHeaderMain extends JPanel{
     JPanelButtons jToolsBar;
 
     public JPHeaderMain(MyPresenter myPresenter) {
-        this.setBackground(Color.CYAN);
+        this.setBackground(Color.lightGray);
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         //this.setPreferredSize(new Dimension(19000,200));
         this.initComponents(myPresenter);
@@ -33,5 +33,9 @@ public class JPHeaderMain extends JPanel{
 
     public void changeLanguage(){
         jToolsBar.changeLanguage();
+    }
+
+    public void changeButtonsIdiom(){
+        jpHeader.changeLanguage();
     }
 }

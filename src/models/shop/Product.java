@@ -1,13 +1,11 @@
 package models.shop;
 
-import models.products.Provider;
-
 public  class Product {
     public static final double IVA_PERCENTAGE = 0.19;
 
     protected String nameProduct;
     protected double price;
-    protected int quantityAvailable;
+    protected int quantityPresentationForSelling = 0;
     private double providerPrice;
     private String provider;
     private Quantity quantityPresentation;
@@ -18,7 +16,7 @@ public  class Product {
         this.typeProduct = typeProduct;
         this.price = price;
         this.nameProduct = nameProduct;
-        this.quantityAvailable = quantityAvailable;
+        this.quantityPresentationForSelling = quantityAvailable;
         this.providerPrice = providerPrice;
         this.provider = provider;
         this.quantityPresentation = quantityPresentation;
@@ -28,7 +26,7 @@ public  class Product {
     public Product(String nameProduct, double price, int quantityAvailable, double providerPrice, String provider, Quantity quantityPresentation, String sanitaryLicense, String typeProduct) {
         this.nameProduct = nameProduct;
         this.price = price;
-        this.quantityAvailable = quantityAvailable;
+        this.quantityPresentationForSelling = quantityAvailable;
         this.providerPrice = providerPrice;
         this.provider = provider;
         this.quantityPresentation = quantityPresentation;
@@ -36,8 +34,10 @@ public  class Product {
         this.typeProduct = typeProduct;
     }
 
+
+
     public void addQuantAvailable(){
-        this.setQuantityAvailable(this.getQuantityAvailable()+1);
+        this.setQuantityPresentationForSelling(this.getQuantityPresentationForSelling()+1);
     }
     public String getTypeProduct() {
         return typeProduct;
@@ -47,12 +47,12 @@ public  class Product {
         this.typeProduct = typeProduct;
     }
 
-    public int getQuantityAvailable() {
-        return quantityAvailable;
+    public int getQuantityPresentationForSelling() {
+        return quantityPresentationForSelling;
     }
 
-    public void setQuantityAvailable(int quantityAvailable) {
-        this.quantityAvailable = quantityAvailable;
+    public void setQuantityPresentationForSelling(int quantityPresentationForSelling) {
+        this.quantityPresentationForSelling = quantityPresentationForSelling;
     }
 
     public String getProvider() {
@@ -113,7 +113,7 @@ public  class Product {
         return new Object[]{
                 this.nameProduct,
                 this.price,
-                this.quantityAvailable,
+                this.quantityPresentationForSelling,
                 this.getQuantityPresentation(),
                 this.provider,
                 this.providerPrice,
@@ -127,7 +127,7 @@ public  class Product {
         return "Product{" +
                 "nameProduct='" + nameProduct + '\'' +
                 ", price=" + price +
-                ", quantityAvailable=" + quantityAvailable +
+                ", quantityPresentationForSelling=" + quantityPresentationForSelling +
                 ", providerPrice=" + providerPrice +
                 ", provider='" + provider + '\'' +
                 ", quantityPresentation=" + quantityPresentation +

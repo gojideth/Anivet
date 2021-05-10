@@ -3,6 +3,7 @@ package utilities;
 import views.ConstantGUI;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -38,11 +39,18 @@ public class MyUtilities {
     public static void setTextAndIconButtons(JButton button, String text, ImageIcon imageIcon, int top, int left, int bottom, int right){
         button.setFont(new Font("Arial", Font.BOLD, 18));
         button.setText(text);
-        button.setForeground(Color.BLUE);
+        button.setForeground(Color.BLACK);
         button.setMaximumSize(new Dimension(380,60));
-        button.setBackground(null);
+        button.setBackground(Color.cyan);
+        button.setForeground(Color.BLACK);
         button.setIcon(imageIcon);
         button.setAlignmentX(Component.LEFT_ALIGNMENT);
+        Border emptyBorder = BorderFactory.createEmptyBorder();
+        button.setBorderPainted(false);
+        button.setContentAreaFilled(false);
+        button.setFocusPainted(false);
+        button.setOpaque(false);
+        button.setBorder(emptyBorder);
         button.setBorder(null);
     }
 

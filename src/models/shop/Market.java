@@ -1,5 +1,6 @@
 package models.shop;
 
+import java.awt.color.ProfileDataException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -34,7 +35,7 @@ public class Market {
         this.name = name;
     }
 
-    public List<Product> getProductArrayList() {
+    public ArrayList<Product> getProductArrayList() {
         return productArrayList;
     }
 
@@ -184,4 +185,25 @@ public class Market {
             System.out.println(filters.get(i).nameProduct);
         }
     }
+    public  ArrayList<Product> removeDuplicates(ArrayList<Product> list)
+    {
+
+        // Create a new ArrayList
+        ArrayList<Product> newList = new ArrayList<Product>();
+
+        // Traverse through the first list
+        for (Product element : list) {
+
+            // If this element is not present in newList
+            // then add it
+            if (!newList.contains(element)) {
+
+                newList.add(element);
+            }
+        }
+
+        // return the new list
+        return newList;
+    }
+
 }

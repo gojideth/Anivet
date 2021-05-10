@@ -9,14 +9,50 @@ import models.shop.Product;
 public class Bill {
     private LocalDate dateOfExpedition;
     private ArrayList<Product> productsBoughts;
-
+    private Client client;
+    private AdministratorPerson administratorPerson;
     /**
      * Constructor que crea un recibo con una fecha entrante e instancia la lista de productos
      * @param date Fecha de la creacion del recibo
      */
     public Bill(LocalDate date) {
         this.dateOfExpedition=date;
-        this.productsBoughts=new ArrayList();
+        this.productsBoughts=new ArrayList<Product>();
+    }
+    public void createAdmin(AdministratorPerson administratorPerson){
+        this.administratorPerson = administratorPerson;
+
+    }
+
+    public void createClient(Client client){
+        this.client = client;
+    }
+    public void setDateOfExpedition(LocalDate dateOfExpedition) {
+        this.dateOfExpedition = dateOfExpedition;
+    }
+
+    public ArrayList<Product> getProductsBoughts() {
+        return productsBoughts;
+    }
+
+    public void setProductsBoughts(ArrayList<Product> productsBoughts) {
+        this.productsBoughts = productsBoughts;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public AdministratorPerson getAdministratorPerson() {
+        return administratorPerson;
+    }
+
+    public void setAdministratorPerson(AdministratorPerson administratorPerson) {
+        this.administratorPerson = administratorPerson;
     }
 
     /**

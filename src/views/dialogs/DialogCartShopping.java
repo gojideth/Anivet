@@ -1,42 +1,41 @@
-package views.body;
+package views.dialogs;
 
+import controllers.Commands;
+import controllers.MyPresenter;
 import views.Constants;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-public class JProductTable extends JPanel {
+public class DialogCartShopping extends JDialog {
+
 
     private DefaultTableModel defaultTableModel;
     private JTable jTable;
     private JScrollPane jScrollPane;
+    private JButton jButton;
+    private JPanel panelConainter;
 
-    public JProductTable() {
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+    public DialogCartShopping(MyPresenter myPresenter ){
+        panelConainter = new JPanel();
+        panelConainter.setLayout(new BoxLayout(panelConainter,BoxLayout.Y_AXIS));
+        setSize(500,600);
         this.setBackground(Color.gray);
-        this.initComponents();
+        JLabel test = new JLabel("TESTSTST");
+
+        this.initComponents(myPresenter);
+        this.add(test);
+        this.addTest();
+        this.add(panelConainter);
 
     }
 
 
-    private void initComponents() {
-        String[] rowNames = {Constants.NAME_PRODUCT, Constants.PRICE, Constants.QUANTITY_AVAILABLE, Constants.PROVIDER_PRICE, Constants.PROVIDER, Constants.QUANTITY_PRESENTATION,Constants.AVAILABLE_PRODUCTS, Constants.LICENSE, Constants.TYPE_PRODUCT };
-        //Creo mi cascarón y a este le debo poner el titulo de las columnas que vaya a usar, en este caso vienen organizadas por el arreglo de objetos de la clase Cuyclist
+    private void initComponents(MyPresenter myPresenter) {
+        String[] rowNames = {Constants.NAME_PRODUCT, Constants.PRICE, Constants.AVAILABLE_PRODUCTS, Constants.TYPE_PRODUCT};
+        defaultTableModel = new DefaultTableModel();
 
-
-        defaultTableModel = new DefaultTableModel() {
-            @Override
-            public Class getColumnClass(int columna) {
-                switch (columna) {
-                    case 1:
-                        return Integer.class;
-                    case 2:
-                        return Integer.class;
-                }
-                return String.class;
-            }
-        };
 
         defaultTableModel.setColumnIdentifiers(rowNames);
 
@@ -59,18 +58,22 @@ public class JProductTable extends JPanel {
         jScrollPane = new JScrollPane(jTable);
         jScrollPane.setAlignmentX(LEFT_ALIGNMENT);
         jScrollPane.setForeground(Color.lightGray);
-        this.add(jScrollPane);
+
+        this.jButton = new JButton("REALIZA LA COMPRA");
+        jButton.setActionCommand(Commands.C_PROCEED_BUY.toString());
+        jButton.addActionListener(myPresenter);
+
+
+        this.panelConainter.add(jScrollPane);
+        this.panelConainter.add(jButton);
+
+
 
     }
 
-    public String tryBuy() {
-        return String.valueOf(defaultTableModel.getValueAt(jTable.getSelectedRow(), 0));
-    }
+    private void addBuyButton(MyPresenter myPresenter){
 
-    /**
-     * Creo metodos que traten directamente con mi tabla, recordando que debo traer desde el presenter los mismos metodos
-     * teniendo en cuenta que debo hacerlo al cascaron (DEFAULT TABLE)
-     */
+    }
 
     public void eraseTable() {
         this.defaultTableModel.setNumRows(0);
@@ -82,4 +85,14 @@ public class JProductTable extends JPanel {
     public void createRow(Object[] data) {
         this.defaultTableModel.addRow(data);
     }
+
+    public void addTest(){
+        this.defaultTableModel.addRow(new String[]{
+                "Hola","Como tas"
+        });
+    }
 }
+
+
+
+

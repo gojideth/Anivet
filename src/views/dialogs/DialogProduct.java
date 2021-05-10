@@ -33,7 +33,7 @@ public class DialogProduct extends JDialog {
 
     private void initComponents(MyPresenter myPresenter) {
         panelContainer = new JPanel();
-        panelContainer.setLayout(new GridLayout(7, 1, 10, 10));
+        panelContainer.setLayout(new GridLayout(10, 1, 10, 10));
         panelContainer.setBackground(Color.lightGray);
 
         nameProduct = new JTextField();
@@ -45,7 +45,7 @@ public class DialogProduct extends JDialog {
         panelContainer.add(price);
 
         quantityAvailable = new JTextField();
-        quantityAvailable.setBorder(BorderFactory.createTitledBorder("Ingresa cantidad"));
+        quantityAvailable.setBorder(BorderFactory.createTitledBorder("Ingresa por cuantas unidades se venderá el producto"));
         panelContainer.add(quantityAvailable);
 
         providerPrice = new JTextField();
@@ -57,7 +57,7 @@ public class DialogProduct extends JDialog {
         panelContainer.add(provider);
 
         quantityPresentationAmount = new JTextField();
-        quantityPresentationAmount.setBorder(BorderFactory.createTitledBorder("Ingresa la cantidad total"));
+        quantityPresentationAmount.setBorder(BorderFactory.createTitledBorder("Ingresa la cantidad total disponible"));
         panelContainer.add(quantityPresentationAmount);
 
 

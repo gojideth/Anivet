@@ -1,8 +1,10 @@
 package views.dialogs;
 
+
 import com.toedter.calendar.JDateChooser;
 import controllers.Commands;
 import controllers.MyPresenter;
+import models.shop.AdministratorPerson;
 import models.shop.ChargeType;
 import models.shop.Client;
 import models.shop.Gender;
@@ -13,7 +15,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.time.ZoneId;
 
-public class DialogUser extends JDialog {
+public class DialogAdmin extends JDialog {
 
     private JPanel panelContainer; //Panel que va a contender el dialog
     private JTextField name;
@@ -25,7 +27,7 @@ public class DialogUser extends JDialog {
     private JToggleButton jToggleButton;
     public  int dorsals = 0;
 
-    public DialogUser(MyPresenter myPresenter) {
+    public DialogAdmin(MyPresenter myPresenter) {
         setModal(true);
         setSize(500,600);
         getContentPane().setBackground(new Color(229, 220, 220));
@@ -60,16 +62,16 @@ public class DialogUser extends JDialog {
         panelContainer.add(jDateChooser);
 
 
-        chargeTypeJComboBox = new JComboBox<>();
-        chargeTypeJComboBox.addItem(ChargeType.USER);
-        chargeTypeJComboBox.setBorder(BorderFactory.createTitledBorder("Ocupación"));
+        chargeTypeJComboBox = new JComboBox();
+        chargeTypeJComboBox.addItem(ChargeType.WORKER);
+        chargeTypeJComboBox.setBorder(BorderFactory.createTitledBorder("Cargo"));
         panelContainer.add(chargeTypeJComboBox);
 
 
 
 
-        jToggleButton = new JToggleButton("Agrega a tu nuevo cliente");
-        jToggleButton.setActionCommand(Commands.CREATE_CLIENT_DIALOG.toString());
+        jToggleButton = new JToggleButton("Agrega un administrador");
+        jToggleButton.setActionCommand(Commands.CREAT_ADMIN_DIALOG.toString());
         jToggleButton.setBorder(new EmptyBorder(10,10,10,10));
 
         jToggleButton.addActionListener(myPresenter);
@@ -78,8 +80,8 @@ public class DialogUser extends JDialog {
         this.add(panelContainer);
     }
 
-    public Client createClient(){
-        return new Client(this.name.getText(),this.document.getText(),(String.valueOf(this.age.getText())),String.valueOf( genderJComboBox.getSelectedItem()),jDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+    public AdministratorPerson createAdmin(){
+        return new AdministratorPerson(this.name.getText(),this.document.getText(),(String.valueOf(this.age.getText())),String.valueOf( genderJComboBox.getSelectedItem()),jDateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
                 String.valueOf(chargeTypeJComboBox.getSelectedItem()));
     }
 
