@@ -1,5 +1,7 @@
 package models.shop;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.awt.color.ProfileDataException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -8,7 +10,11 @@ import java.util.List;
 
 public class Market {
     private String name;
+
+    @SerializedName("product")
     private ArrayList<Product> productArrayList;
+
+
     private ArrayList<Product> filters;
     private ArrayList<Product> itemsBoughts;
 
@@ -17,6 +23,10 @@ public class Market {
         this.productArrayList = new ArrayList<>();
         this.filters = new ArrayList<>();
         this.itemsBoughts = new ArrayList<>();
+    }
+
+    public void myMarketFill(Market market){
+        this.productArrayList = market.getProductArrayList();
     }
 
     public ArrayList<Product> getItemsBoughts() {

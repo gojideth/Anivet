@@ -51,6 +51,10 @@ public class Quantity {
         }
     }
 
+    public void setProductDenomination(String productDenomination) {
+        this.productDenomination = productDenomination;
+    }
+
     /**
      * Metodo que cambia el valor de la cantidad
      *

@@ -11,5 +11,6 @@
     <orderEntry type="library" name="json-simple-2.1.2" level="project" />
     <orderEntry type="library" name="com.fasterxml.jackson.databind" level="project" />
     <orderEntry type="library" name="jackson-core-2.2.3" level="project" />
+    <orderEntry type="library" name="gson-2.8.2" level="project" />
   </component>
 </module>

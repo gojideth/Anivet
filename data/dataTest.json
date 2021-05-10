@@ -1,0 +1,30 @@
+{
+  "product":[{
+    "nameProduct": "Dikon",
+    "price": "2867",
+    "quantityPresentationForSelling": 6,
+    "providerPrice": 2007,
+    "provider": "Eaton Vance Risk-Managed Diversified Equity Income Fund",
+    "quantityPresentation": {
+      "amount": 1,
+      "productDenomination": "UNITS"
+    },
+    "sanitaryLicense": "3561310159448933",
+    "typeProduct": "Cheese - Swiss"
+    },
+    {
+      "nameProduct": "Veal - Liver",
+      "price": "22",
+      "quantityPresentationForSelling": 8,
+      "providerPrice": 9779,
+      "provider": "Moleculin Biotech, Inc.",
+      "quantityPresentation": {
+        "amount": 1,
+        "productDenomination": "UNITS"
+      },
+      "sanitaryLicense": "3530257404954900",
+      "typeProduct": "Extract - Raspberry"
+    }
+  ]
+}
+

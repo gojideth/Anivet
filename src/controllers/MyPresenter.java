@@ -2,6 +2,8 @@ package controllers;
 
 import models.administration.Administrator;
 import models.shop.*;
+import org.json.simple.DeserializationException;
+import persistence.JSonManager;
 import utilities.HandlerLanguage;
 import views.ConstantGUI;
 import views.JFrameMain;
@@ -23,13 +25,25 @@ public class MyPresenter implements ActionListener {
     private Administrator administrator;
     private HandlerLanguage config;
     private Bill bill;
+    private JSonManager jSonManager;
 
 
-    public MyPresenter() {
+    public MyPresenter() throws IOException, DeserializationException {
         loadConfiguration();
         this.administrator = new Administrator(new Market("Anivet"));
         this.mainFrame = new JFrameMain(this);
         this.bill = new Bill(LocalDate.now());
+        this.jSonManager = new JSonManager();
+        try {
+            this.administrator.getMarket().myMarketFill(this.jSonManager.getProductList());
+            addFromJsonToMarket();
+            this.showTableData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DeserializationException e) {
+            e.printStackTrace();
+        }
+
         this.initComponents();
     }
 
@@ -57,6 +71,8 @@ public class MyPresenter implements ActionListener {
                 break;
             case I_CHANGE_TO_SPANISH:
                 manageChangeLanguageES();
+
+
                 break;
             case C_SHOW_DIALOG_CLIENT:
                 this.showDialogCreate();
@@ -79,7 +95,6 @@ public class MyPresenter implements ActionListener {
                 this.buyProducts();
                 this.printAnyArraylist(this.administrator.getMarket().getItemsBoughts());
                 JOptionPane.showMessageDialog(null, "Agregado con éxito", "Shopping Cart", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(new ImageIcon(getClass().getResource(ConstantGUI.GIF_CHECK)).getImage()));
-
 
                 break;
             case C_SHOW_CART:
@@ -124,12 +139,24 @@ public class MyPresenter implements ActionListener {
 
     }
 
+    public void addFromJsonToMarket() throws IOException, DeserializationException {
+        this.administrator.getMarket().myMarketFill(this.jSonManager.getProductList());
+        this.printAnyArraylist(this.administrator.getMarket().getProductArrayList());
+    }
+
+
     public StringBuilder printBeautifullArrays(ArrayList <Product> productArrayList){
         StringBuilder out = new StringBuilder();
         for (Product product: productArrayList) {
             out.append("Nombre del producto: ").append(product.getNameProduct()).append(", Precio individual: ").append(product.getPrice()).append("\n");
         }
         return out;
+    }
+
+    public void brindProductsAndSetThem(ArrayList <Product>productArrayList){
+        for (Product product: productArrayList) {
+            this.administrator.getMarket().addProduct(product);
+        }
     }
 
     public String generateBill(){
@@ -382,7 +409,7 @@ public class MyPresenter implements ActionListener {
         mainFrame.changeLanguage();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, DeserializationException {
         new MyPresenter();
     }
 }
