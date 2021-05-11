@@ -17,6 +17,7 @@ public class JProductTable extends JPanel {
         this.setBackground(Color.gray);
         this.initComponents();
 
+
     }
 
 
@@ -59,6 +60,7 @@ public class JProductTable extends JPanel {
         jScrollPane = new JScrollPane(jTable);
         jScrollPane.setAlignmentX(LEFT_ALIGNMENT);
         jScrollPane.setForeground(Color.lightGray);
+        jScrollPane.setPreferredSize(new Dimension((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),600));
         this.add(jScrollPane);
 
     }

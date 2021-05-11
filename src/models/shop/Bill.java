@@ -24,6 +24,14 @@ public class Bill {
 
     }
 
+    public Double returnAllPrices(){
+        double sum = 0;
+        for (Product product:this.productsBoughts) {
+            sum+= product.getPrice();
+        }
+        return sum;
+    }
+
     public void createClient(Client client){
         this.client = client;
     }

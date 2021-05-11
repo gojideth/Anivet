@@ -12,7 +12,7 @@ public class JPHeaderMain extends JPanel{
     public JPHeaderMain(MyPresenter myPresenter) {
         this.setBackground(Color.lightGray);
         this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-        //this.setPreferredSize(new Dimension(19000,200));
+        this.setPreferredSize(new Dimension(1900,200));
         this.initComponents(myPresenter);
         //this.setSize(1800000,20);
     }

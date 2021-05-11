@@ -48,6 +48,15 @@ public class JFrameMain extends JFrame {
         mainPanel.changeButtonsIdiom();
     }
 
+    public void showGraphicsButtons(){
+        this.mainPanel.showGraphicsButtons();
+        this.validate();
+    }
+
+    public void showTableButtons(){
+        this.mainPanel.showTablesButtons();
+        this.validate();
+    }
 
     //Bill
     public void createBillTableData(Object [] data){

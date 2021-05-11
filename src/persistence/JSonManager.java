@@ -29,7 +29,7 @@ public class JSonManager {
 
 
     public Market getProductList() throws IOException, DeserializationException {
-        FileReader fileReader = new FileReader("./data/data2.json");
+        FileReader fileReader = new FileReader("./data/data.json");
 
 
         //Gson gson = new Gson();

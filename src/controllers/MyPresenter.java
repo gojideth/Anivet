@@ -3,12 +3,15 @@ package controllers;
 import models.administration.Administrator;
 import models.shop.*;
 import org.json.simple.DeserializationException;
+import persistence.BillWriter;
 import persistence.JSonManager;
+import utilities.BeautifulBill;
 import utilities.HandlerLanguage;
 import views.ConstantGUI;
 import views.JFrameMain;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -26,7 +29,7 @@ public class MyPresenter implements ActionListener {
     private HandlerLanguage config;
     private Bill bill;
     private JSonManager jSonManager;
-
+    private BillWriter billWriter;
 
     public MyPresenter() throws IOException, DeserializationException {
         loadConfiguration();
@@ -34,6 +37,7 @@ public class MyPresenter implements ActionListener {
         this.mainFrame = new JFrameMain(this);
         this.bill = new Bill(LocalDate.now());
         this.jSonManager = new JSonManager();
+        this.billWriter = new BillWriter();
         try {
             this.administrator.getMarket().myMarketFill(this.jSonManager.getProductList());
             addFromJsonToMarket();
@@ -43,20 +47,22 @@ public class MyPresenter implements ActionListener {
         } catch (DeserializationException e) {
             e.printStackTrace();
         }
-
         this.initComponents();
+
     }
 
     private void initComponents() {
         JOptionPane.showMessageDialog(null, "Por favor agregue a un administrador para continuar");
-        while(this.administrator.getAdministratorPerson()== null){
+        while (this.administrator.getAdministratorPerson() == null && this.administrator.getClient() == null) {
             this.mainFrame.showAdminDialog();
             this.createAdminInAdministration(this.bringAdminFromDialog());
+            JOptionPane.showMessageDialog(null, "Por favor agregue a un cliente");
+            this.showDialogCreate();
+            this.setText();
+            this.setId();
 
         }
-        JOptionPane.showMessageDialog(null, "De tener cliente, agreguelo al sistema en el botón superior derecho ");
         System.out.println(this.administrator.getAdministratorPerson().toString());
-
     }
 
     @Override
@@ -72,7 +78,12 @@ public class MyPresenter implements ActionListener {
             case I_CHANGE_TO_SPANISH:
                 manageChangeLanguageES();
 
-
+                break;
+            case C_SHOW_PANEL_GRAPHICS_BUTTONS:
+                this.mainFrame.showGraphicsButtons();
+                break;
+            case C_SHOW_PANEL_TABLES:
+                this.mainFrame.showTableButtons();
                 break;
             case C_SHOW_DIALOG_CLIENT:
                 this.showDialogCreate();
@@ -107,6 +118,8 @@ public class MyPresenter implements ActionListener {
 
                 //JOptionPane.showMessageDialog(null,this.generateBill() );
                 JOptionPane.showMessageDialog(null, this.generateBill(), "Anivet Factura", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(new ImageIcon(getClass().getResource(ConstantGUI.GIF)).getImage()));
+                this.writeBillFile();
+                JOptionPane.showMessageDialog(null, "Factura generada en: " + this.billWriter.getMyObj().getPath());
                 break;
 
             case CREATE_PRODUCT_DIALOG_AND_CLOSE:
@@ -131,7 +144,7 @@ public class MyPresenter implements ActionListener {
 
     //DialogCart
 
-    public void showCartDialog(){
+    public void showCartDialog() {
         this.mainFrame.showDialogCart();
         this.fillCartTable();
         testDataIFadd();
@@ -144,54 +157,69 @@ public class MyPresenter implements ActionListener {
         this.printAnyArraylist(this.administrator.getMarket().getProductArrayList());
     }
 
+    public void writeBillFile() {
+        this.billWriter.createBilLFile();
+        this.billWriter.writeExistingFile(this.returnAllBillInfo());
 
-    public StringBuilder printBeautifullArrays(ArrayList <Product> productArrayList){
+    }
+
+    public String returnAllBillInfo() {
+        return BeautifulBill.createBeautifullBill(this.printBeautifullArrays(this.bill.getProductsBoughts()),
+                this.bill.getAdministratorPerson().getName(),
+                this.bill.getClient().getName(),
+                this.bill.returnAllPrices(),
+                LocalDate.now());
+    }
+
+
+    public StringBuilder printBeautifullArrays(ArrayList<Product> productArrayList) {
         StringBuilder out = new StringBuilder();
-        for (Product product: productArrayList) {
+        for (Product product : productArrayList) {
             out.append("Nombre del producto: ").append(product.getNameProduct()).append(", Precio individual: ").append(product.getPrice()).append("\n");
         }
         return out;
     }
 
-    public void brindProductsAndSetThem(ArrayList <Product>productArrayList){
-        for (Product product: productArrayList) {
+    public void brindProductsAndSetThem(ArrayList<Product> productArrayList) {
+        for (Product product : productArrayList) {
             this.administrator.getMarket().addProduct(product);
         }
     }
 
-    public String generateBill(){
+    public String generateBill() {
         String aux = "";
-        aux = "Nombre del cliente: " + this.bill.getClient().getName() + "\nProductos comprados: "  + this.printBeautifullArrays(this.bill.getProductsBoughts())
+        aux = "Nombre del cliente: " + this.bill.getClient().getName() + "\nProductos comprados: " + this.printBeautifullArrays(this.bill.getProductsBoughts())
                 + "\nTe atendió: " + this.bill.getAdministratorPerson().getName() + "\nQue tengas un gran dia :3";
         return aux;
     }
 
-    public void closeDialogCart(){
+
+    public void closeDialogCart() {
         this.mainFrame.closeDialogCart();
     }
 
-    public void fillCartTable(){
+    public void fillCartTable() {
         this.mainFrame.eraseBillTableData();
-        for (Product product: this.administrator.getMarket().getItemsBoughts()) {
+        for (Product product : this.administrator.getMarket().getItemsBoughts()) {
             this.mainFrame.createBillTableData(this.fromProductToBill(product));
             this.bill.getProductsBoughts().add(product);
         }
         this.setClientAdmin();
     }
 
-    public void showTableData(){
+    public void showTableData() {
         mainFrame.deleteRows();
-        for (Product product: this.administrator.getMarket().getProductArrayList()) {
+        for (Product product : this.administrator.getMarket().getProductArrayList()) {
             mainFrame.createRow(this.fromProductToArray(product));
         }
     }
 
-    public void setClientAdmin(){
+    public void setClientAdmin() {
         this.bill.createClient(this.administrator.getClient());
         this.bill.createAdmin(this.administrator.getAdministratorPerson());
     }
 
-    public void testDataIFadd(){
+    public void testDataIFadd() {
         this.mainFrame.createBillTableData(new Object[]{
                 "hola"
         });
@@ -204,19 +232,19 @@ public class MyPresenter implements ActionListener {
     }
     //DialogAdmin
 
-    public void showAdminDialog(){
+    public void showAdminDialog() {
         mainFrame.showAdminDialog();
     }
 
-    private AdministratorPerson bringAdminFromDialog(){
+    private AdministratorPerson bringAdminFromDialog() {
         return this.mainFrame.createAdminFromDialog();
     }
 
-    public void closeDialogAdmin(){
+    public void closeDialogAdmin() {
         this.mainFrame.closeAdminDialog();
     }
 
-    public void createAdminInAdministration(AdministratorPerson administratorPerson){
+    public void createAdminInAdministration(AdministratorPerson administratorPerson) {
         this.administrator.createAdmin(administratorPerson);
         this.mainFrame.closeAdminDialog();
     }
@@ -253,7 +281,7 @@ public class MyPresenter implements ActionListener {
     }
 
     public void addProductValidater(Product product) {
-        for (int i = 0; i<this.administrator.getMarket().getProductArrayList().size();i++) {
+        for (int i = 0; i < this.administrator.getMarket().getProductArrayList().size(); i++) {
             if (product.getNameProduct().equalsIgnoreCase(this.administrator.getMarket().getProductArrayList().get(i).getNameProduct())) {
                 this.administrator.getMarket().getProductArrayList().get(i).addQuantAvailable();
             }
@@ -261,8 +289,6 @@ public class MyPresenter implements ActionListener {
         }
         this.administrator.getMarket().getProductArrayList().add(product);
     }
-
-
 
 
     public void deleteProduct(String name) {
@@ -287,7 +313,7 @@ public class MyPresenter implements ActionListener {
         };
     }
 
-    public Object[] fromProductToBill(Product product){
+    public Object[] fromProductToBill(Product product) {
         return new Object[]{
                 String.valueOf(product.getNameProduct()),
                 String.valueOf(product.getPrice()),
@@ -308,20 +334,20 @@ public class MyPresenter implements ActionListener {
         }
     }
 
-    public void printAnyArraylist(ArrayList<Product> arrayList){
-        for (Product o: arrayList) {
+    public void printAnyArraylist(ArrayList<Product> arrayList) {
+        for (Product o : arrayList) {
             System.out.println(Arrays.toString(o.getObjectVector()));
         }
     }
 
-    public String obtainSelectedData(){
+    public String obtainSelectedData() {
         return mainFrame.obtainSelectedData();
     }
 
-    public void buyProducts(){
+    public void buyProducts() {
         Product productAux;
-        for (int i = 0;i<this.administrator.getMarket().getProductArrayList().size();i++) {
-            if (this.obtainSelectedData().equalsIgnoreCase(this.administrator.getMarket().getProductArrayList().get(i).getNameProduct())){
+        for (int i = 0; i < this.administrator.getMarket().getProductArrayList().size(); i++) {
+            if (this.obtainSelectedData().equalsIgnoreCase(this.administrator.getMarket().getProductArrayList().get(i).getNameProduct())) {
                 productAux = this.administrator.getMarket().getProductArrayList().get(i);
                 this.administrator.getMarket().getItemsBoughts().add(productAux);
             }
@@ -342,7 +368,7 @@ public class MyPresenter implements ActionListener {
 
     }
 
-    public void setId(){
+    public void setId() {
         mainFrame.createUserID(this.bringClientFromDialog().getDocument());
     }
 

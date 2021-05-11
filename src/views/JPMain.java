@@ -13,8 +13,10 @@ public class JPMain extends JPanel {
     private JPHeaderMain jpHeaderMain;
     private JPMainBody jpMainBody;
 
+
     public JPMain(MyPresenter myPresenter) {
         this.setLayout(new BorderLayout());
+        this.setPreferredSize(new Dimension(1900,200));
         initComponents(myPresenter);
 
     }
@@ -22,7 +24,7 @@ public class JPMain extends JPanel {
     public void initComponents(MyPresenter myPresenter){
         this.jpLogin = new JPLogin(myPresenter);
         this.jpHeaderMain = new JPHeaderMain(myPresenter);
-        this.jpMainBody = new JPMainBody();
+        this.jpMainBody = new JPMainBody(myPresenter);
         this.add(jpHeaderMain,BorderLayout.NORTH);
         this.add(jpMainBody,BorderLayout.CENTER);
         //this.add(jpLogin);
@@ -34,8 +36,19 @@ public class JPMain extends JPanel {
 
     }
 
+    public void showGraphicsButtons(){
+        jpMainBody.showGraphicsButtons();
+    }
+
+    public void showTablesButtons(){
+        jpMainBody.showTableButtons();
+    }
+
+
+
     public void changeButtonsIdiom(){
         jpHeaderMain.changeButtonsIdiom();
+        jpMainBody.changeIdiom();
     }
 
 
