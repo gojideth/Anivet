@@ -11,13 +11,14 @@ import views.ConstantGUI;
 import views.JFrameMain;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MyPresenter implements ActionListener {
     private static final String SPANISH_PATH = "./resources/languages/languageES.properties";
@@ -67,16 +68,19 @@ public class MyPresenter implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        int aux[] = this.createNumberBelowPrice();
+        int auxSecond[] = this.createDataForQuantities();
         switch (Commands.valueOf(e.getActionCommand())) {
             case C_SHOW_HOMEPAGE:
                 System.out.println("FUNCIONA");
                 break;
             case I_CHANGE_TO_ENGLISH:
                 manageChangeLenguageUS();
-                this.printAnyArraylist(this.administrator.getMarket().removeDuplicates(this.administrator.getMarket().getProductArrayList()));
+                // this.printAnyArraylist(this.administrator.getMarket().removeDuplicates(this.administrator.getMarket().getProductArrayList()));
                 break;
             case I_CHANGE_TO_SPANISH:
                 manageChangeLanguageES();
+
 
                 break;
             case C_SHOW_PANEL_GRAPHICS_BUTTONS:
@@ -127,34 +131,236 @@ public class MyPresenter implements ActionListener {
 
                 this.showTableData();
                 this.closeProductDialog();
+                //this.printAnyArraylist(this.administrator.getMarket().getProductArrayList());
 
+                break;
+            case C_SHOW_FILTER_TYPE:
+                this.mainFrame.deleteRowsFilterType();
+                this.mainFrame.showDialogFilterType();
+                break;
+
+            case C_SHOW_FILTER_QUANTITY_AVAILABLE:
+                this.mainFrame.showDialogFilterQuantity();
+                break;
+            case C_SHOW_FILTER_PRESENTATION:
+                this.mainFrame.showDialogDenomination();
+
+                break;
+            case C_SHOW_FILTER_PRICE:
+                this.mainFrame.showPricesDialog();
+                break;
 
             case C_SHOW_TABLE:
                 mainFrame.showTableProducts();
-
                 break;
             case C_DELETE_PRODUCT:
                 this.deleteProduct(JOptionPane.showInputDialog(null));
                 this.showTableData();
                 break;
+            case C_RETURN_SELECTED_TYPE_PRODUCT:
+                showFilteredTypedProducts(this.mainFrame.returnSelectedItem());
+                this.mainFrame.fireTableDataChange();
+                break;
+
+            case C_RETURN_SELECTED_QUANTITY_PRODUCT:
+                this.showFilteredQuantityProducts(this.mainFrame.returnSelectedItemQuantity());
+                this.mainFrame.fireTableDataQuantityChange();
+                break;
+            case C_RETURN_SELECTED_DENOMINATION:
+                this.showFilteredDenomination(this.mainFrame.returnSelectedDenominationItem());
+                this.mainFrame.fireTableDataDenomination();
+                break;
+            case C_RETURN_SELECTED_RANGES:
+                this.showFilteredRangePrice(this.mainFrame.returnRanges());
+                this.mainFrame.fireTablePrices();
+                break;
+            case C_CLOSE_DIALOG_TYPE:
+                this.mainFrame.closeFilterType();
+                break;
+            case C_CLOSE_DIALOG_QUANTITY:
+                this.mainFrame.closeQuantityDialog();
+                break;
+            case C_CLOSE_DIALOG_DENOMINATION:
+                this.mainFrame.closeDialogDenomination();
+                break;
+            case C_CLOSE_DIALOG_PRICES:
+                this.mainFrame.closeDialogPrices();
+                break;
+            case C_SHOW_GRAPHIC_DENOMINATION:
+                this.mainFrame.createGraphByDenominations(this.createNumberDenominationGrams(), this.createNumberDenominationUnits());
+                break;
+            case C_SHOW_GRAPHIC_RANGED_PRICES:
+                this.mainFrame.createGraphByRangedPrice(aux[0], aux[1]);
+                break;
+            case C_SHOW_GRAPHIC_QUANTITIES:
+                this.mainFrame.createGraphByQuantityPresentationForSelling(auxSecond);
+                break;
+            case C_SHOW_UTILITIES:
+
+               this.mainFrame.createGraphByUtility(this.takeHigherValues(this.createArrayUtility()),this.extractNames(this.createArrayUtilityProduct()));
+                break;
             default:
+                break;
 
         }
     }
 
     //DialogCart
+    public ArrayList<Integer> createArrayUtility(){
+        ArrayList <Integer> out= new ArrayList<>();
+        for (Product product:this.administrator.getMarket().getProductArrayList()) {
+            out.add(product.obtainUtility());
+        }
+        Collections.sort(out);
+        return out;
+    }
+    public ArrayList<Product> createArrayUtilityProduct(){
+        ArrayList<Product> productArrayList = new ArrayList<>(this.administrator.getMarket().getProductArrayList());
+        productArrayList.sort(new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return o1.obtainUtility()- o2.obtainUtility();
+            }
+        });
+        return productArrayList;
+    }
+
+    public ArrayList<String> extractNames(ArrayList<Product> productArrayList){
+        ArrayList <String> outAux = new ArrayList<>();
+        for (int i = productArrayList.size()-3; i < productArrayList.size(); i++) {
+            outAux.add(productArrayList.get(i).getNameProduct());
+        }
+        return outAux;
+    }
+
+    public void extractTestNames(){
+        for (String s:this.extractNames(this.createArrayUtilityProduct())) {
+            System.out.println(s);
+        }
+    }
+
+    public ArrayList<Integer> takeHigherValues(ArrayList <Integer> arrayList){
+        ArrayList <Integer> out= new ArrayList<>();
+        for (int i = (arrayList.size()-3); i <arrayList.size() ; i++) {
+            out.add(arrayList.get(i));
+        }
+        //this.printAnyArraylistObj(out);
+        return out;
+    }
+
+    public int[] createDataForQuantities() {
+        int outOne = 0, outTwo = 0, outThree = 0, outFourth = 0, outFive = 0;
+        for (Product product : this.administrator.getMarket().getProductArrayList()) {
+            switch (product.getQuantityPresentationForSelling()) {
+                case 1:
+                    outOne++;
+                    break;
+                case 2:
+                    outTwo++;
+                    break;
+                case 3:
+                    outThree++;
+                    break;
+                case 4:
+                    outFourth++;
+                    break;
+                case 5:
+                    outFive++;
+                    break;
+
+            }
+        }
+        return new int[]{
+                outOne, outTwo, outThree, outFourth, outFive
+        };
+    }
+
+
+    public int[] createNumberBelowPrice() {
+        int out = 0;
+        int secondCounter = 0;
+        for (Product product : this.administrator.getMarket().getProductArrayList()) {
+            if (product.getPrice() > 50000) {
+                out++;
+            } else {
+                secondCounter++;
+            }
+        }
+        return new int[]{
+                out, secondCounter
+        };
+    }
+
+
+    public int createNumberDenominationGrams() {
+        int out = 0;
+        for (Product product : this.administrator.getMarket().getProductArrayList()) {
+            if (product.getQuantityPresentation().getProductDenomination().equalsIgnoreCase("UNITS")) {
+                out++;
+            }
+        }
+        return out;
+    }
+
+    public int createNumberDenominationUnits() {
+        int out = 0;
+        for (Product product : this.administrator.getMarket().getProductArrayList()) {
+            if (product.getQuantityPresentation().getProductDenomination().equalsIgnoreCase("GRAMS")) {
+                out++;
+            }
+        }
+        return out;
+    }
 
     public void showCartDialog() {
         this.mainFrame.showDialogCart();
         this.fillCartTable();
         testDataIFadd();
+    }
 
+    public void showFilteredRangePrice(double[] data) {
+        this.mainFrame.eraseColumnPricesTable();
+        for (Product product : this.administrator.getMarket().getProductArrayList()) {
+            if (product.getPrice() >= data[0] && product.getPrice() <= data[1]) {
+                this.mainFrame.addObjectToTablePrices(this.fromProductToArray(product));
+            }
+        }
+    }
+
+
+    public void showFilteredDenomination(String denominationDesired) {
+        this.mainFrame.eraseColumnDenominationTable();
+        for (Product product : this.administrator.getMarket().getProductArrayList()) {
+            if (product.getQuantityPresentation().getProductDenomination().equalsIgnoreCase(denominationDesired)) {
+                this.mainFrame.addObjectToTableDenomination(this.fromProductToArray(product));
+            }
+
+        }
+    }
+
+    public void showFilteredTypedProducts(String typeProduct) {
+        this.mainFrame.deleteRowsFilterType();
+        for (Product product : this.administrator.getMarket().getProductArrayList()) {
+            if (typeProduct.equalsIgnoreCase(product.getTypeProduct())) {
+                this.mainFrame.addColumnFilterType(this.fromProductToArray(product));
+            }
+        }
 
     }
 
+    public void showFilteredQuantityProducts(int quantityDesired) {
+        this.mainFrame.eraseColumnQuantityRows();
+        for (Product product : this.administrator.getMarket().getProductArrayList()) {
+            if ((quantityDesired) == product.getQuantityPresentation().getAmount()) {
+                this.mainFrame.addColumnToQuantityTable(this.fromProductToArray(product));
+            }
+        }
+    }
+
+
     public void addFromJsonToMarket() throws IOException, DeserializationException {
         this.administrator.getMarket().myMarketFill(this.jSonManager.getProductList());
-        this.printAnyArraylist(this.administrator.getMarket().getProductArrayList());
+        //this.printAnyArraylist(this.administrator.getMarket().getProductArrayList());
     }
 
     public void writeBillFile() {
@@ -283,10 +489,12 @@ public class MyPresenter implements ActionListener {
     public void addProductValidater(Product product) {
         for (int i = 0; i < this.administrator.getMarket().getProductArrayList().size(); i++) {
             if (product.getNameProduct().equalsIgnoreCase(this.administrator.getMarket().getProductArrayList().get(i).getNameProduct())) {
+                System.out.println("ENTRO AL IF" + product.toString());
                 this.administrator.getMarket().getProductArrayList().get(i).addQuantAvailable();
             }
 
         }
+        System.out.println("acá pasó el bucle");
         this.administrator.getMarket().getProductArrayList().add(product);
     }
 
@@ -337,6 +545,11 @@ public class MyPresenter implements ActionListener {
     public void printAnyArraylist(ArrayList<Product> arrayList) {
         for (Product o : arrayList) {
             System.out.println(Arrays.toString(o.getObjectVector()));
+        }
+    }
+    public void printAnyArraylistObj(ArrayList<Integer> arrayList) {
+        for (Object o : arrayList) {
+            System.out.println(o);
         }
     }
 

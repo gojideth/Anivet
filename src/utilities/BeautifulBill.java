@@ -12,17 +12,17 @@ public class BeautifulBill {
                 "\n                           ANIVET LA 33 - Cadena de suministros agricolas " +
                 "\n                                  Para el campo lo mejor    "
                 + "\n----------------------------------------------------------------------------------------"
-                + "\nFecha de generación de la factura: "
+                + "\n         Fecha de generación de la factura: "
                 + timeNow
-                + "\nAtendido por: "
+                + "\n         Atendido por: "
                 + nameAdmin
-                + "\nCliente: "
+                + "\n         Cliente: "
                 + nameClient
                 + "\n----------------------------------------------------------------------------------------"
-                + "\nLista de Productos comprados: \n\n"
+                + "\n         Lista de Productos comprados: \n\n"
                 + arrayProducts.toString()
                 + "----------------------------------------------------------------------------------------"
-                +"\nTotal de la factura: " + totalCost
+                +"\n          Total de la factura: " + totalCost
                 + "\n----------------------------------------------------------------------------------------"
                 + "\nVuelva pronto, gracias a su compra podemos patrocinar al mejor equipo, Boyacá Chico F.C ";
 

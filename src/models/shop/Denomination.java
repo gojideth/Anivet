@@ -8,4 +8,7 @@ public enum Denomination {
         this.denomination = denominacion;
     }
 
+    public String getDenomination() {
+        return denomination;
+    }
 }

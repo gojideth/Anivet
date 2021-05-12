@@ -34,7 +34,9 @@ public  class Product {
         this.typeProduct = typeProduct;
     }
 
-
+    public int obtainUtility(){
+        return (int) (this.price-this.providerPrice);
+    }
 
     public void addQuantAvailable(){
         this.setQuantityPresentationForSelling(this.getQuantityPresentationForSelling()+1);

@@ -43,10 +43,10 @@ public class ConstantGUI {
 
 
     //Buttons for graphs
-    public static final String T_SHOW_GRAPH_MINOR_TO_HIGHEST =  "Products_graph_from_minor_price_to_highest";
-    public static final String T_SHOW_GRAPH_MOST_SELLED=  "Products_most_sold";
-    public static final String T_SHOW_GRAPH_QUANTITIES=  "Products_with_few_quantities";
-    public static final String T_SHOW_GRAPH_NOIDEA=  "Products_no_idea";
+    public static final String T_SHOW_GRAPH_UTILITIES =  "Products_with_best_utilities";
+    public static final String T_SHOW_GRAPH_MOST_SELLED=  "Products_quantity_available";
+    public static final String T_SHOW_GRAPH_DENOMINATION =  "Products_with_type_denomination";
+    public static final String T_SHOW_GRAPH_RANGED_PRICE =  "Products_below_and_upper_of_medium_price";
 
 
 

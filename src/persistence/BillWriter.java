@@ -25,7 +25,7 @@ public class BillWriter {
 
     public void createBilLFile(){
         try {
-            myObj = new File("E:\\Documentos\\UPTC\\Mis Proyectos\\Anivet\\bills\\Bill.factura");
+            myObj = new File(".\\bills\\Bill.factura");
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {

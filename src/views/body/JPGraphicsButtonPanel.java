@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class JPGraphicsButtonPanel extends JPanel {
-    JButton gMinorToHighestPrice, gMostSelled, gQuantities, filterByPrice;
+    JButton gUtility, gPresentationSelling, gQuantitiesDenomination, filterByPrice;
 
 
     public JPGraphicsButtonPanel(MyPresenter myPresenter) {
@@ -25,42 +25,42 @@ public class JPGraphicsButtonPanel extends JPanel {
 
 
     public void initComponents(MyPresenter myPresenter) {
-        gMinorToHighestPrice = new JButton();
+        gUtility = new JButton();
         ImageIcon tempWorld = new ImageIcon(new ImageIcon(getClass().getResource(ConstantGUI.ICON_GRAPH)).getImage());
-        gMinorToHighestPrice.setActionCommand(Commands.C_SHOW_GRAPHIC_MINOR_TO_HIGH.toString());
-        gMinorToHighestPrice.addActionListener(myPresenter);
-        MyUtilities.setTextAndIconButtons(gMinorToHighestPrice, HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_SHOW_GRAPH_MINOR_TO_HIGHEST), tempWorld, 0, 0, 0, 0);
+        gUtility.setActionCommand(Commands.C_SHOW_UTILITIES.toString());
+        gUtility.addActionListener(myPresenter);
+        MyUtilities.setTextAndIconButtons(gUtility, HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_SHOW_GRAPH_UTILITIES), tempWorld, 0, 0, 0, 0);
 
-        gMostSelled = new JButton();
-        gMostSelled.setActionCommand(Commands.C_SHOW_GRAPHIC_MOST_SELLED.toString());
-        gMostSelled.addActionListener(myPresenter);
+        gPresentationSelling = new JButton();
+        gPresentationSelling.setActionCommand(Commands.C_SHOW_GRAPHIC_QUANTITIES.toString());
+        gPresentationSelling.addActionListener(myPresenter);
         tempWorld = new ImageIcon(new ImageIcon(getClass().getResource(ConstantGUI.ICON_GRAPH)).getImage());
-        MyUtilities.setTextAndIconButtons(gMostSelled, HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_SHOW_GRAPH_MOST_SELLED), tempWorld, 0, 0, 0, 0);
+        MyUtilities.setTextAndIconButtons(gPresentationSelling, HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_SHOW_GRAPH_MOST_SELLED), tempWorld, 0, 0, 0, 0);
 
-        gQuantities = new JButton();
-        gQuantities.setActionCommand(Commands.C_SHOW_GRAPHIC_MOST_SELLED.toString());
-        gQuantities.addActionListener(myPresenter);
+        gQuantitiesDenomination = new JButton();
+        gQuantitiesDenomination.setActionCommand(Commands.C_SHOW_GRAPHIC_DENOMINATION.toString());
+        gQuantitiesDenomination.addActionListener(myPresenter);
         tempWorld = new ImageIcon(new ImageIcon(getClass().getResource(ConstantGUI.ICON_GRAPH)).getImage());
-        MyUtilities.setTextAndIconButtons(gQuantities, HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_SHOW_GRAPH_QUANTITIES), tempWorld, 0, 0, 0, 0);
+        MyUtilities.setTextAndIconButtons(gQuantitiesDenomination, HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_SHOW_GRAPH_DENOMINATION), tempWorld, 0, 0, 0, 0);
 
         filterByPrice = new JButton("");
-        filterByPrice.setActionCommand(Commands.C_SHOW_GRAPHIC_NIIDEA_QUANTITIES.toString());
+        filterByPrice.setActionCommand(Commands.C_SHOW_GRAPHIC_RANGED_PRICES.toString());
         filterByPrice.addActionListener(myPresenter);
-        MyUtilities.setTextAndIconButtons(filterByPrice, HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_SHOW_GRAPH_NOIDEA),
+        MyUtilities.setTextAndIconButtons(filterByPrice, HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_SHOW_GRAPH_RANGED_PRICE),
                 new ImageIcon(new ImageIcon(getClass().getResource(ConstantGUI.ICON_GRAPH)).getImage()), 0, 0, 0, 0);
 
-        this.add(gMinorToHighestPrice);
-        this.add(gMostSelled);
-        this.add(gQuantities);
+        this.add(gUtility);
+        this.add(gPresentationSelling);
+        this.add(gQuantitiesDenomination);
         this.add(filterByPrice);
 
     }
 
     public void changeLanguage() {
-        gMinorToHighestPrice.setText(HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_SHOW_GRAPH_MINOR_TO_HIGHEST));
-        gMostSelled.setText(HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_SHOW_GRAPH_MOST_SELLED));
-        gQuantities.setText(HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_SHOW_FILTER_BY_QUANTITY));
-        filterByPrice.setText(HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_SHOW_GRAPH_NOIDEA));
+        gUtility.setText(HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_SHOW_GRAPH_UTILITIES));
+        gPresentationSelling.setText(HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_SHOW_GRAPH_MOST_SELLED));
+        gQuantitiesDenomination.setText(HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_SHOW_GRAPH_DENOMINATION));
+        filterByPrice.setText(HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_SHOW_GRAPH_RANGED_PRICE));
 
     }
 }
