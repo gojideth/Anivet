@@ -13,7 +13,7 @@ public class JPLogin extends JPanel {
 
 
     public JPLogin(MyPresenter myPresenter) {
-       // this.setLayout(new BorderLayout());
+
         this.setBackground(Color.BLUE);
         createLogin(myPresenter);
 

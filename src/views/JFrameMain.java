@@ -45,8 +45,6 @@ public class JFrameMain extends JFrame {
     public JFrameMain(MyPresenter myPresenter)  {
 
 
-
-
         initComponents(myPresenter);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -136,7 +134,6 @@ public class JFrameMain extends JFrame {
         this.dialogFilterByRangePrice.dispose();
     }
 
-    ///////////////////////////////////////////////////////////////////
     public void fireTableDataDenomination(){
         this.dialogFilterByPresentation.fireData();
     }
@@ -161,7 +158,6 @@ public class JFrameMain extends JFrame {
         this.dialogFilterByPresentation.dispose();
     }
 
-    /////////////////////////////////////////////////////
     public void fireTableDataQuantityChange(){
         this.dialogFilterByQuantity.fireData();
     }
@@ -187,7 +183,7 @@ public class JFrameMain extends JFrame {
     }
 
 
-//////////////////////////////////////////////
+
 
 
 
@@ -226,7 +222,7 @@ public class JFrameMain extends JFrame {
         this.validate();
     }
 
-    //Bill
+
     public void createBillTableData(Object [] data){
         this.dialogCartShopping.createRow(data);
     }
@@ -235,7 +231,7 @@ public class JFrameMain extends JFrame {
         this.dialogCartShopping.eraseTable();
     }
 
-    //CartDialog
+
     public void showDialogCart(){
         this.dialogCartShopping.setVisible(true);
     }

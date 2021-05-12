@@ -4,6 +4,7 @@ public class ConstantGUI {
     public static final String COLOR_SKY_BLUE ="" ;
     public static final String LOGO_ANIVET ="/images/logoAnivet.png" ;
     public static final String ICON_FRAME = "/images/favicon.png";
+    public static final String ANIVET = "Anivet";
 
     //Icons butttons
     public static final String ICON_ADD_PRODUCT = "/images/addIcon.png";
@@ -24,6 +25,8 @@ public class ConstantGUI {
     public static final String ICON_LOGOUT= "/images/logout.png";
     //public static final String ICON_DELETE_PRODUCT2 = "/images/delete.png";
 
+    public static final String T_ADD_ADMIN = "Por favor agregue a un administrador para continuar";
+    public static final String T_ADD_CLIENT = "Por favor agregue a un cliente para continuar";
 
 
 

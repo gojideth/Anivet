@@ -27,7 +27,7 @@ public class JPMain extends JPanel {
         this.jpMainBody = new JPMainBody(myPresenter);
         this.add(jpHeaderMain,BorderLayout.NORTH);
         this.add(jpMainBody,BorderLayout.CENTER);
-        //this.add(jpLogin);
+
         this.jpLogin.setVisible(false);
     }
 

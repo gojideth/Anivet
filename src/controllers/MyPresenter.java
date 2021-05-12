@@ -34,7 +34,7 @@ public class MyPresenter implements ActionListener {
 
     public MyPresenter() throws IOException, DeserializationException {
         loadConfiguration();
-        this.administrator = new Administrator(new Market("Anivet"));
+        this.administrator = new Administrator(new Market(ConstantGUI.ANIVET));
         this.mainFrame = new JFrameMain(this);
         this.bill = new Bill(LocalDate.now());
         this.jSonManager = new JSonManager();
@@ -53,11 +53,11 @@ public class MyPresenter implements ActionListener {
     }
 
     private void initComponents() {
-        JOptionPane.showMessageDialog(null, "Por favor agregue a un administrador para continuar");
+        JOptionPane.showMessageDialog(null, ConstantGUI.T_ADD_ADMIN);
         while (this.administrator.getAdministratorPerson() == null && this.administrator.getClient() == null) {
             this.mainFrame.showAdminDialog();
             this.createAdminInAdministration(this.bringAdminFromDialog());
-            JOptionPane.showMessageDialog(null, "Por favor agregue a un cliente");
+            JOptionPane.showMessageDialog(null, ConstantGUI.T_ADD_CLIENT);
             this.showDialogCreate();
             this.setText();
             this.setId();
@@ -72,11 +72,11 @@ public class MyPresenter implements ActionListener {
         int auxSecond[] = this.createDataForQuantities();
         switch (Commands.valueOf(e.getActionCommand())) {
             case C_SHOW_HOMEPAGE:
-                System.out.println("FUNCIONA");
+
                 break;
             case I_CHANGE_TO_ENGLISH:
                 manageChangeLenguageUS();
-                // this.printAnyArraylist(this.administrator.getMarket().removeDuplicates(this.administrator.getMarket().getProductArrayList()));
+
                 break;
             case I_CHANGE_TO_SPANISH:
                 manageChangeLanguageES();
@@ -127,7 +127,7 @@ public class MyPresenter implements ActionListener {
             case C_PROCEED_BUY:
                 this.closeDialogCart();
 
-                //JOptionPane.showMessageDialog(null,this.generateBill() );
+
                 JOptionPane.showMessageDialog(null, this.generateBill(), "Anivet Factura", JOptionPane.INFORMATION_MESSAGE, new ImageIcon(new ImageIcon(getClass().getResource(ConstantGUI.GIF)).getImage()));
                 this.writeBillFile();
                 JOptionPane.showMessageDialog(null, "Factura generada en: " + this.billWriter.getMyObj().getPath());
@@ -138,7 +138,7 @@ public class MyPresenter implements ActionListener {
 
                 this.showTableData();
                 this.closeProductDialog();
-                //this.printAnyArraylist(this.administrator.getMarket().getProductArrayList());
+
 
                 break;
             case C_SHOW_FILTER_TYPE:
@@ -252,7 +252,7 @@ public class MyPresenter implements ActionListener {
         for (int i = (arrayList.size()-3); i <arrayList.size() ; i++) {
             out.add(arrayList.get(i));
         }
-        //this.printAnyArraylistObj(out);
+
         return out;
     }
 
@@ -368,7 +368,7 @@ public class MyPresenter implements ActionListener {
 
     public void addFromJsonToMarket() throws IOException, DeserializationException {
         this.administrator.getMarket().myMarketFill(this.jSonManager.getProductList());
-        //this.printAnyArraylist(this.administrator.getMarket().getProductArrayList());
+
     }
 
     public void writeBillFile() {
@@ -435,16 +435,16 @@ public class MyPresenter implements ActionListener {
 
     public void testDataIFadd() {
         this.mainFrame.createBillTableData(new Object[]{
-                "hola"
+
         });
     }
 
-    //DialogCLIENT
+
 
     public void showDialogCreate() {
         mainFrame.showDialogCreate();
     }
-    //DialogAdmin
+
 
     public void showAdminDialog() {
         mainFrame.showAdminDialog();
@@ -475,7 +475,7 @@ public class MyPresenter implements ActionListener {
         this.administrator.createClient(client);
         this.mainFrame.closeDialogClient();
     }
-    //DialogProduct
+
 
     public void showProductDialog() {
         mainFrame.showProductDialog();
@@ -497,12 +497,12 @@ public class MyPresenter implements ActionListener {
     public void addProductValidater(Product product) {
         for (int i = 0; i < this.administrator.getMarket().getProductArrayList().size(); i++) {
             if (product.getNameProduct().equalsIgnoreCase(this.administrator.getMarket().getProductArrayList().get(i).getNameProduct())) {
-                System.out.println("ENTRO AL IF" + product.toString());
+
                 this.administrator.getMarket().getProductArrayList().get(i).addQuantAvailable();
             }
 
         }
-        System.out.println("acá pasó el bucle");
+
         this.administrator.getMarket().getProductArrayList().add(product);
     }
 
@@ -601,7 +601,7 @@ public class MyPresenter implements ActionListener {
         try {
             config.loadLanguage();
         } catch (IOException e) {
-            //JOptionPane.showMessageDialog(jfMainWindow, e.getMessage());
+
             System.out.println(e.getMessage());
         }
     }

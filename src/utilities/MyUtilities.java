@@ -58,10 +58,10 @@ public class MyUtilities {
         jlabel.setText(text);
         jlabel.setFont(new Font("Arial", Font.PLAIN, 15));
         jlabel.setForeground(Color.BLACK);
-        //jlabel.setMaximumSize(new Dimension(380,30));
+
         jlabel.setBackground(null);
         jlabel.setIcon(logo);
-        //jlabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
         jlabel.setBorder(null);
 
     }

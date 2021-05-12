@@ -84,8 +84,7 @@ public class DialogFilterByRangePrice extends JDialog {
 
         this.panelConainter.add(panelAux);
 
-       // this.panelConainter.add(jButtonSelected);
-        //this.panelConainter.add(jCloseButton);
+
 
 
     }
