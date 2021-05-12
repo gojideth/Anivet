@@ -15,8 +15,7 @@ public class JPGraphicsButtonPanel extends JPanel {
 
     public JPGraphicsButtonPanel(MyPresenter myPresenter) {
         this.setLayout(new GridLayout(2, 2));
-        //this.setBackground(Color.lightGray);
-        this.setBackground(Color.green);
+        this.setBackground(new Color(131,255,212));
         this.setPreferredSize(new Dimension((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),200));
         this.initComponents(myPresenter);
         this.setVisible(true);

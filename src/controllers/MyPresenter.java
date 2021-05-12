@@ -22,7 +22,7 @@ import java.util.Comparator;
 
 public class MyPresenter implements ActionListener {
     private static final String SPANISH_PATH = "./resources/languages/languageES.properties";
-    private static final String NAME_FILE_CONFIG = "./resources/config/config.init";
+    private static final String NAME_FILE_CONFIG = "resources/config/config.init";
     private static final String ENGLISH_PATH = "./resources/languages/languageUS.properties";
 
     private JFrameMain mainFrame;

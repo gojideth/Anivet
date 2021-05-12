@@ -37,6 +37,9 @@ public class ConstantGUI {
     public static final String T_SHOW_CART= "Show_cart";
     public static final String T_ADD_PRODUCT_TO_CART= "Add_to_shopping_cart";
 
+    public static final String T_BUTTON_SHOW_TABLES= "Show_tables";
+    public static final String T_BUTTON_SHOW_GRAPHS= "Show_graphs";
+
     //Buttons for table filter
     public static final String T_SHOW_FILTER_TYPE_PRODUCT= "Show_products_by_type";
     public static final String T_SHOW_FILTER_BY_PRESENTATION= "Show_products_by_presentation";
