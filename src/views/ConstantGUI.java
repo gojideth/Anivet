@@ -20,6 +20,8 @@ public class ConstantGUI {
     public static final String ICON_ADD_CART = "/images/addcart.png";
     public static final String ICON_TABLE = "/images/table.png";
     public static final String ICON_GRAPH = "/images/diagram.png";
+    public static final String ICON_ADD_CLIENT = "/images/customer.png";
+    public static final String ICON_LOGOUT= "/images/logout.png";
     //public static final String ICON_DELETE_PRODUCT2 = "/images/delete.png";
 
 
@@ -52,6 +54,8 @@ public class ConstantGUI {
 
     public static final String T_SPANISH = "Spanish";
     public static final String T_ENGLISH = "English";
+    public static final String T_PLEASE_ADD_CLIENT = "Add_client_first";
+    public static final String T_EXIT_USER = "Logout";
 
 
 

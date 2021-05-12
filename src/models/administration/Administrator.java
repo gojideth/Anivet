@@ -18,6 +18,9 @@ public class Administrator {
         this.market = market;
 
     }
+    public void makeNull(){
+        this.client = null;
+    }
 
     public AdministratorPerson getAdministratorPerson() {
         return administratorPerson;

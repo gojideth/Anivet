@@ -67,19 +67,25 @@ public class PaneLogo extends JPanel {
 
         this.userID = new JLabel(" ");
 
-        this.logOut = new JButton(Constants.LOGOUT);
+        this.logOut = new JButton();
         this.logOut.setActionCommand(Commands.LOGOUT.toString());
         this.logOut.addActionListener(myPresenter);
+        tempWorld = new ImageIcon(new ImageIcon(getClass().getResource(ConstantGUI.ICON_LOGOUT)).getImage());
+        MyUtilities.setTextAndIconButtons(logOut,HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_EXIT_USER),tempWorld,0,0,0,0);
 
-        this.signIn = new JButton("Agrega a un nuevo cliente");
+        this.signIn = new JButton("");
         this.signIn.setActionCommand(Commands.C_SHOW_DIALOG_CLIENT.toString());
         this.signIn.addActionListener(myPresenter);
+        tempWorld = new ImageIcon(new ImageIcon(getClass().getResource(ConstantGUI.ICON_ADD_CLIENT)).getImage());
+
+        MyUtilities.setTextAndIconButtons(signIn,HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_PLEASE_ADD_CLIENT),tempWorld,0,0,0,0);
 
         welcomePanel.add(welcomeUser);
         welcomePanel.add(userID);
         welcomePanel.add(signIn);
         welcomePanel.add(logOut);
         welcomePanel.add(Box.createRigidArea(new Dimension(100,0)));
+
         changeToSpanish = new JButton("");
         changeToSpanish.setActionCommand(Commands.I_CHANGE_TO_SPANISH.toString());
         changeToSpanish.addActionListener(myPresenter);
@@ -102,6 +108,8 @@ public class PaneLogo extends JPanel {
     public void changeLanguage(){
         changeToEnglish.setText(HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_ENGLISH));
         changeToSpanish.setText(HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_SPANISH));
+        signIn.setText(HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_PLEASE_ADD_CLIENT));
+        logOut.setText(HandlerLanguage.languageProperties.getProperty(ConstantGUI.T_EXIT_USER));
 
 
     }

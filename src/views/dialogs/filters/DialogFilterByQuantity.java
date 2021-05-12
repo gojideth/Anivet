@@ -65,7 +65,7 @@ public class DialogFilterByQuantity extends JDialog {
         jsAge.setBackground(Color.WHITE);
 
         this.jButtonSelected = new JButton("BUSCAR");
-        this.jButtonSelected.setActionCommand(Commands.C_RETURN_SELECTED_TYPE_PRODUCT.toString());
+        this.jButtonSelected.setActionCommand(Commands.C_RETURN_SELECTED_QUANTITY_PRODUCT.toString());
         this.jButtonSelected.addActionListener(myPresenter);
 
         this.jCloseButton = new JButton("CERRAR");

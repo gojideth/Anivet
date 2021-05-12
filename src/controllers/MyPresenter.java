@@ -97,6 +97,13 @@ public class MyPresenter implements ActionListener {
                 this.setText();
                 this.setId();
                 break;
+            case LOGOUT:
+                this.administrator.makeNull();
+                this.showDialogCreate();
+                this.createClientInAdmin(this.bringClientFromDialog());
+                this.setText();
+                this.setId();
+                break;
             case CREAT_ADMIN_DIALOG:
                 this.mainFrame.closeAdminDialog();
                 break;
@@ -199,6 +206,7 @@ public class MyPresenter implements ActionListener {
 
                this.mainFrame.createGraphByUtility(this.takeHigherValues(this.createArrayUtility()),this.extractNames(this.createArrayUtilityProduct()));
                 break;
+
             default:
                 break;
 
