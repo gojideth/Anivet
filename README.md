@@ -16,7 +16,7 @@
 
 ## Installation
 
-Dillinger requires any JDK version.
+
 
 Download the jar file or source code and compile it
 
